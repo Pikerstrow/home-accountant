@@ -85,8 +85,8 @@
       top: 0;
       left: 0;
       z-index: 99;
-      background-color: #095207;
-      color: #d0d8df;
+      background-color: #3b3b39;
+      color: #e8ebcc;
       padding: 10px 20px;
    }
    #hamburger_menu {
@@ -100,7 +100,7 @@
       display: block;
       height: 3px;
       width: 100%;
-      background-color: #d0d8df;
+      background-color: #e8ebcc;
       position: relative;
       left: 0;
    }
@@ -131,14 +131,14 @@
       color: yellow;
    }
    .admin_panel_title span:nth-child(2) {
-      color: #d0d8df;
+      color: #e8ebcc;
    }
    .admin-profile, .admin-profile:hover {
       text-decoration: none;
       font-size: 16px;
       font-family: 'Roboto', sans-serif;
       letter-spacing: .8px;
-      color: #d0d8df;
+      color: #e8ebcc;
    }
    .admin-name {
       display: inline-block;
@@ -148,14 +148,14 @@
       position: absolute !important;
       margin-top: 14px;
       border-radius: 0;
-      background-color: #333333;
+      background-color: #3b3b39;
    }
    .admin-profile-dropdown a {
-      color: #d0d8df;
+      color: #e8ebcc;
       cursor: pointer;
    }
    .admin-profile-dropdown a:hover {
-      background-color: #333333;
+      background-color: #3b3b39;
       color: yellow;
    }
    .admin-profile-dropdown a i {
