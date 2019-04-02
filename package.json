@@ -25,6 +25,7 @@
         "vue-template-compiler": "^2.6.8"
     },
     "dependencies": {
+        "simple-date-piker-vue": "^1.0.7",
         "toastr": "^2.1.4",
         "vue-bootstrap-datetimepicker": "^5.0.1",
         "vue-router": "^3.0.2",

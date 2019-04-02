@@ -1790,6 +1790,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var simple_date_piker_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! simple-date-piker-vue */ "./node_modules/simple-date-piker-vue/src/main.js");
 //
 //
 //
@@ -1804,8 +1805,134 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "ExpensesComponent"
+  name: "ExpensesComponent",
+  data: function data() {
+    return {
+      date: '',
+      category: '',
+      sum: '',
+      options: {
+        locale: 'UK-ua',
+        dateFormat: 'dd/mm/YYYY',
+        useCurrentDate: true
+      }
+    };
+  },
+  methods: {
+    checkModal: function checkModal() {
+      var modal = this.$refs.modalwrapper;
+
+      if (modal.style.display == 'none' || !modal.style.display) {
+        modal.style.display = 'flex';
+      } else {
+        modal.style.display = 'none';
+      }
+    }
+  },
+  components: {
+    'date-piker': simple_date_piker_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  }
 });
 
 /***/ }),
@@ -1820,8 +1947,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _parts_HeadNavigation_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./parts/HeadNavigation.vue */ "./resources/js/components/parts/HeadNavigation.vue");
-/* harmony import */ var _parts_SidebarNavigation_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./parts/SidebarNavigation.vue */ "./resources/js/components/parts/SidebarNavigation.vue");
-/* harmony import */ var _parts_AdminFooter_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./parts/AdminFooter.vue */ "./resources/js/components/parts/AdminFooter.vue");
+/* harmony import */ var _parts_AdminFooter_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./parts/AdminFooter.vue */ "./resources/js/components/parts/AdminFooter.vue");
 //
 //
 //
@@ -1836,15 +1962,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     "head-navigation": _parts_HeadNavigation_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
-    "sidebar-navigation": _parts_SidebarNavigation_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
-    "admin-footer": _parts_AdminFooter_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
+    "admin-footer": _parts_AdminFooter_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   mounted: function mounted() {
     this.$store.dispatch('getUserName');
@@ -1949,7 +2072,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   computed: {
     username: function username() {
@@ -1963,67 +2085,9 @@ __webpack_require__.r(__webpack_exports__);
     logout: function logout() {
       var form = document.getElementById("logout-form");
       form.submit();
-    },
-    toggleDropdown: function toggleDropdown(event) {
-      var dropDown = $(event.target).closest('.dropdown').find('.dropdown-menu');
-      var parentLi = $(event.target).closest('li');
-      var caret = $(event.target).find('.fa-caret-down');
-      $(dropDown).toggleClass('show');
-      $(parentLi).toggleClass('show');
-      $(caret).toggleClass('caret-up');
-      $(event.target).attr('aria-expanded') == 'true' ? $(event.target).attr('aria-expanded', 'false') : $(event.target).attr('aria-expanded', 'true');
-    },
-    toggleSidebar: function toggleSidebar() {
-      if ($(window).width() > 815) {
-        $('#sidebar-nav').toggleClass('sidebar-hide');
-        $('#main-content').find('div.content').toggleClass('content_full_width');
-      } else {
-        $('.sidebar-menu').slideToggle();
-      }
     }
   }
 });
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/parts/SidebarNavigation.vue?vue&type=script&lang=js&":
-/*!**********************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/parts/SidebarNavigation.vue?vue&type=script&lang=js& ***!
-  \**********************************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
 
@@ -6472,6 +6536,82 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./node_modules/simple-date-piker-vue/src/components/Calendar.vue?vue&type=style&index=0&lang=scss&":
+/*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/lib/loader.js??ref--7-3!./node_modules/vue-loader/lib??vue-loader-options!./node_modules/simple-date-piker-vue/src/components/Calendar.vue?vue&type=style&index=0&lang=scss& ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".calendar {\n  border: 1px solid #dddddd;\n  border-radius: 4px;\n  box-shadow: 1px 1px 8px 2px #ebe4eb;\n}\n.calendar:before {\n  content: \"\";\n  display: block;\n  width: 12px;\n  height: 12px;\n  background-color: white;\n  -webkit-transform: rotate(45deg);\n          transform: rotate(45deg);\n  position: absolute;\n  top: -7px;\n  left: 12px;\n  border-left: 1px solid #dddddd;\n  border-top: 1px solid #dddddd;\n}", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./node_modules/simple-date-piker-vue/src/components/DatePiker.vue?vue&type=style&index=0&id=46519205&scoped=true&lang=scss&":
+/*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/lib/loader.js??ref--7-3!./node_modules/vue-loader/lib??vue-loader-options!./node_modules/simple-date-piker-vue/src/components/DatePiker.vue?vue&type=style&index=0&id=46519205&scoped=true&lang=scss& ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".calendar-component[data-v-46519205] {\n  position: absolute;\n  left: 0;\n  background-color: white;\n  z-index: 9999;\n}\n.form-control[data-v-46519205] {\n  display: block;\n  width: 100%;\n  padding: 0.375rem 0.75rem;\n  font-size: 1rem;\n  line-height: 1.5;\n  color: #495057;\n  background-color: #fff;\n  background-clip: padding-box;\n  border: 1px solid #ced4da;\n  border-radius: 0.25rem;\n  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;\n  margin-bottom: 13px;\n}\n@media screen and (prefers-reduced-motion: reduce) {\n.form-control[data-v-46519205] {\n    transition: none;\n}\n}\n.form-control[data-v-46519205]::-ms-expand {\n  background-color: transparent;\n  border: 0;\n}\n.form-control[data-v-46519205]:focus {\n  color: #495057;\n  background-color: #fff;\n  border-color: #80bdff;\n  outline: 0;\n  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);\n}\n.form-control[data-v-46519205]::-webkit-input-placeholder {\n  color: #6c757d;\n  opacity: 1;\n}\n.form-control[data-v-46519205]:-ms-input-placeholder {\n  color: #6c757d;\n  opacity: 1;\n}\n.form-control[data-v-46519205]::-ms-input-placeholder {\n  color: #6c757d;\n  opacity: 1;\n}\n.form-control[data-v-46519205]::placeholder {\n  color: #6c757d;\n  opacity: 1;\n}\n.form-control[data-v-46519205]:disabled,\n.form-control[readonly][data-v-46519205] {\n  background-color: #e9ecef;\n  opacity: 1;\n}", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./node_modules/simple-date-piker-vue/src/components/calendar_parts/Body.vue?vue&type=style&index=0&lang=scss&":
+/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/lib/loader.js??ref--7-3!./node_modules/vue-loader/lib??vue-loader-options!./node_modules/simple-date-piker-vue/src/components/calendar_parts/Body.vue?vue&type=style&index=0&lang=scss& ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".table-calendar tr,\n.table-calendar td,\n.table-calendar th {\n  border: none !important;\n  padding: 0.35rem 0.75rem !important;\n  text-align: center;\n}\n.table-calendar td:hover {\n  background-color: #eeebeb;\n  cursor: pointer;\n}\n.table-calendar thead {\n  font-size: 1rem;\n}\n.not-current-month {\n  color: #bdbbbb;\n}", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./node_modules/simple-date-piker-vue/src/components/calendar_parts/Header.vue?vue&type=style&index=0&lang=scss&":
+/*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/lib/loader.js??ref--7-3!./node_modules/vue-loader/lib??vue-loader-options!./node_modules/simple-date-piker-vue/src/components/calendar_parts/Header.vue?vue&type=style&index=0&lang=scss& ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".calendar-date {\n  font-size: 1.1rem;\n  font-weight: bolder;\n}\n.header-elems-container {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between;\n  align-items: center;\n  padding: 7px 5px;\n}\n.header-elems-container .switchers-container,\n.header-elems-container .close-button-container {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between;\n  align-items: center;\n  width: 85%;\n}\n.header-elems-container .close-button-container {\n  width: 15%;\n  justify-content: center;\n}\n.header-elems-container .close-button-container button.hide-calendar {\n  line-height: 10px;\n  background-color: #f15b5b;\n  border-radius: 50%;\n  position: relative;\n  width: 26px;\n  height: 26px;\n  border: none;\n  cursor: pointer;\n}\n.header-elems-container .close-button-container button.hide-calendar span {\n  display: block;\n  width: 16px;\n  height: 3px;\n  background-color: white;\n  margin-bottom: 0px;\n  padding: 0 !important;\n  position: absolute;\n  top: calc(50% - 1px);\n  left: calc(50% - 8px);\n}\n.header-elems-container .close-button-container button.hide-calendar .one {\n  -webkit-transform: rotate(40deg);\n          transform: rotate(40deg);\n  -webkit-transform-origin: center center;\n          transform-origin: center center;\n}\n.header-elems-container .close-button-container button.hide-calendar .two {\n  -webkit-transform: rotate(-40deg);\n          transform: rotate(-40deg);\n  -webkit-transform-origin: center center;\n          transform-origin: center center;\n}\n.header-elems-container span {\n  padding: 6px;\n}\n.header-elems-container .month-switcher {\n  cursor: pointer;\n  font-size: 25px;\n  font-weight: bold;\n  padding: 7px;\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between;\n  align-items: center;\n}\n.header-elems-container .month-switcher:hover {\n  background-color: #eeebeb;\n}", ""]);
+
+// exports
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/CalendarComponent.vue?vue&type=style&index=0&id=56bbe5f8&scoped=true&lang=css&":
 /*!***********************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/CalendarComponent.vue?vue&type=style&index=0&id=56bbe5f8&scoped=true&lang=css& ***!
@@ -6485,6 +6625,25 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 // module
 exports.push([module.i, "\n.table-calendar thead[data-v-56bbe5f8] {\n   background-color: grey;\n   color: white;\n   border: 2px solid grey;\n}\n.table-calendar thead th[data-v-56bbe5f8] {\n   border: 1px solid white;\n}\n.calendar-wrapper[data-v-56bbe5f8] {\n   width: 100%;\n   border: 2px solid darkgreen;\n   padding: 20px;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ExpensesComponent.vue?vue&type=style&index=0&id=74df3447&scoped=true&lang=css&":
+/*!***********************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ExpensesComponent.vue?vue&type=style&index=0&id=74df3447&scoped=true&lang=css& ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n#modal-wrapper[data-v-74df3447] {\n   display: none;\n   /*display: block;*/\n   position: fixed;\n   z-index: 1000;\n   left: 0;\n   top: 0;\n   width: 100%;\n   height: 100%;\n   overflow: auto;\n   background-color: rgba(0, 0, 0, 0.6)\n}\n.add-expense-form-container[data-v-74df3447] {\n   background-color: white;\n   padding: 25px 20px;\n}\nhr.button-separator[data-v-74df3447] {\n   background-color: whitesmoke;\n}\n.add-expense span[data-v-74df3447] {\n   background-color: #2c804e;\n   color: #e8ebcc;\n   cursor: pointer;\n   font-size: 50px;\n   margin-top: 15px;\n   margin-bottom: 20px;\n   border-radius: 50%;\n   width: 50px;\n   height: 50px;\n   display: flex;\n   flex-direction: row;\n   justify-content: center;\n   align-items: center;\n   box-shadow: 1px 1px 31px -8px rgba(0, 0, 0, 1);\n   transition-duration: .3s;\n}\n.add-expense span[data-v-74df3447]:hover {\n   background-color: #246339;\n   color: #ebe14f;\n}\n.table-expenses thead th[data-v-74df3447], .table-expenses thead td[data-v-74df3447] {\n   border-bottom: unset !important;\n}\n.table-expenses th[data-v-74df3447], .table-expenses td[data-v-74df3447] {\n   padding: 0.3rem;\n}\n.table-expenses thead[data-v-74df3447] {\n   background-color: #dee2e659;\n}\n.edit-i[data-v-74df3447] {\n   cursor: pointer;\n   color: royalblue;\n   margin: 4px;\n}\n.delete-i[data-v-74df3447] {\n   cursor: pointer;\n   color: darkred;\n   margin: 4px;\n}\n.animate[data-v-74df3447] {\n   -webkit-animation: zoom-data-v-74df3447 .7s;\n           animation: zoom-data-v-74df3447 .7s\n}\n@-webkit-keyframes zoom-data-v-74df3447 {\nfrom {\n      -webkit-transform: scale(0);\n              transform: scale(0)\n}\nto {\n      -webkit-transform: scale(1);\n              transform: scale(1)\n}\n}\n@keyframes zoom-data-v-74df3447 {\nfrom {\n      -webkit-transform: scale(0);\n              transform: scale(0)\n}\nto {\n      -webkit-transform: scale(1);\n              transform: scale(1)\n}\n}\n", ""]);
 
 // exports
 
@@ -6522,26 +6681,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.top-nav[data-v-3fade68e]{\n   display: flex;\n   flex-direction: row;\n   justify-content: space-between;\n}\n.header[data-v-3fade68e] {\n   min-height: 50px;\n   width: 100%;\n   position: fixed;\n   top: 0;\n   left: 0;\n   z-index: 99;\n   background-color: #3b3b39;\n   color: #e8ebcc;\n   padding: 10px 20px;\n}\n#hamburger_menu[data-v-3fade68e] {\n   position: relative;\n   width: 36px;\n   height: 30px;\n   cursor: pointer;\n   display: inline-block;\n}\n#hamburger_menu span[data-v-3fade68e] {\n   display: block;\n   height: 3px;\n   width: 100%;\n   background-color: #e8ebcc;\n   position: relative;\n   left: 0;\n}\n#hamburger_menu span[data-v-3fade68e]:nth-child(1) {\n   top: 2px;\n}\n#hamburger_menu span[data-v-3fade68e]:nth-child(2) {\n   top: 11px;\n}\n#hamburger_menu span[data-v-3fade68e]:nth-child(3) {\n   top: 20px;\n}\n.nav-hamburger-menu-container[data-v-3fade68e], .nav-profile-container[data-v-3fade68e] {\n   display: flex;\n   width: auto;\n   align-items: center !important;\n   flex-direction: row;\n   justify-content: space-between;\n}\n.admin_panel_title[data-v-3fade68e] {\n   font-family: 'Rancho', cursive;\n   letter-spacing: 1px;\n   font-size: 23px;\n   margin-left: 15px;\n   display: inline-block;\n}\n.admin_panel_title span[data-v-3fade68e]:nth-child(1) {\n   color: yellow;\n}\n.admin_panel_title span[data-v-3fade68e]:nth-child(2) {\n   color: #e8ebcc;\n}\n.admin-profile[data-v-3fade68e], .admin-profile[data-v-3fade68e]:hover {\n   text-decoration: none;\n   font-size: 16px;\n   font-family: 'Roboto', sans-serif;\n   letter-spacing: .8px;\n   color: #e8ebcc;\n}\n.admin-name[data-v-3fade68e] {\n   display: inline-block;\n   margin: 0px 3px;\n}\n.admin-profile-dropdown[data-v-3fade68e] {\n   position: absolute !important;\n   margin-top: 14px;\n   border-radius: 0;\n   background-color: #3b3b39;\n}\n.admin-profile-dropdown a[data-v-3fade68e] {\n   color: #e8ebcc;\n   cursor: pointer;\n}\n.admin-profile-dropdown a[data-v-3fade68e]:hover {\n   background-color: #3b3b39;\n   color: yellow;\n}\n.admin-profile-dropdown a i[data-v-3fade68e] {\n   margin-right: 10px;\n}\n.caret-up[data-v-3fade68e] {\n   -webkit-transform: rotate(180deg);\n           transform: rotate(180deg);\n}\n.separator[data-v-3fade68e] {\n   display: inline-block;\n   margin: 0 10px;\n   font-size: 25px;\n}\n.admin-to-site[data-v-3fade68e], .admin-to-site[data-v-3fade68e]:hover, .admin-to-site[data-v-3fade68e]:visited {\n   color: #d0d8df;\n   text-decoration: none;\n   cursor: pointer;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-
-/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/parts/SidebarNavigation.vue?vue&type=style&index=0&id=0c65f406&scoped=true&lang=css&":
-/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/parts/SidebarNavigation.vue?vue&type=style&index=0&id=0c65f406&scoped=true&lang=css& ***!
-  \*****************************************************************************************************************************************************************************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n#sidebar-nav[data-v-0c65f406] {\n   width: 200px;\n   height: calc(100% - 54px);\n   position: fixed;\n   left: 0px;\n   top: 56px;\n   background-color: #51524d;\n   margin-left: 0px;\n   transition-duration: .2s;\n   overflow: hidden;\n   opacity: 1;\n   z-index: 999;\n}\nul.sidebar-menu>li>a[data-v-0c65f406] {\n   color: #e8ebcc;\n   text-decoration: none;\n   display: block;\n   padding: 15px 0 15px 10px !important;\n   font-size: 15.5px;\n   font-family: 'Roboto', sans-serif;\n   letter-spacing: .8px;\n   outline: none;\n   transition: 0.4s;\n   border-bottom: 1px solid #e8ebcc;\n}\nul.sidebar-menu>li>a[data-v-0c65f406]:hover {\n   background-color: #73746f;\n}\nul.sidebar-menu span.i-wrap[data-v-0c65f406] {\n   display: inline-block;\n   width: 18px;\n}\nli.router-link-exact-active a[data-v-0c65f406] {\n   background-color: #73746f;\n}\n", ""]);
+exports.push([module.i, "\n.nav-profile-container span[data-v-3fade68e], .admin_panel_title span[data-v-3fade68e] {\n   margin-left: 5px;\n}\n.top-nav[data-v-3fade68e], .nav-links-container[data-v-3fade68e], .nav-profile-container[data-v-3fade68e], .logout-container[data-v-3fade68e]{\n   display: flex;\n   flex-direction: row;\n   justify-content: space-between;\n   align-content: center;\n}\n.header[data-v-3fade68e] {\n   min-height: 50px;\n   width: 100%;\n   position: fixed;\n   top: 0;\n   left: 0;\n   z-index: 99;\n   background-color: #3b3b39;\n   color: #e8ebcc;\n   padding: 10px 20px;\n}\n.nav-links-container a[data-v-3fade68e], .nav-profile-container a[data-v-3fade68e] {\n   color: #e8ebcc;\n   padding: 5px 20px;\n   display: flex;\n   flex-direction: row;\n   justify-content: center;\n   align-items: center;\n   height: 45px;\n}\n.nav-links-container a.active[data-v-3fade68e], .nav-profile-container a.active[data-v-3fade68e], .nav-links-container a.active span[data-v-3fade68e]{\n   color: yellow;\n}\n.nav-links-container a[data-v-3fade68e]:hover, .nav-profile-container a[data-v-3fade68e]:hover {\n   text-decoration: none;\n}\n.admin_panel_title[data-v-3fade68e], .nav-links-container a[data-v-3fade68e], .nav-profile-container a[data-v-3fade68e] {\n   font-family: 'Rancho', cursive;\n   letter-spacing: 1px;\n   font-size: 23px;\n}\n.admin_panel_title a[data-v-3fade68e]{\n   padding-left: 0px;\n   height: 45px;\n}\na.logout[data-v-3fade68e] {\n   padding-right: 0;\n   cursor: pointer;\n}\n.nav-a-text[data-v-3fade68e] {\n   font-size: 17px;\n}\n.admin_panel_title span[data-v-3fade68e] {\n   color: #e8ebcc;\n   padding-bottom: 3px;\n}\ni[data-v-3fade68e] {\n   font-size: 19px;\n}\n", ""]);
 
 // exports
 
@@ -37142,6 +37282,506 @@ process.umask = function() { return 0; };
 
 /***/ }),
 
+/***/ "./node_modules/simple-date-piker-vue/src/components/Calendar.vue":
+/*!************************************************************************!*\
+  !*** ./node_modules/simple-date-piker-vue/src/components/Calendar.vue ***!
+  \************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Calendar_vue_vue_type_template_id_2054f3cc___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Calendar.vue?vue&type=template&id=2054f3cc& */ "./node_modules/simple-date-piker-vue/src/components/Calendar.vue?vue&type=template&id=2054f3cc&");
+/* harmony import */ var _Calendar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Calendar.vue?vue&type=script&lang=js& */ "./node_modules/simple-date-piker-vue/src/components/Calendar.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _Calendar_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Calendar.vue?vue&type=style&index=0&lang=scss& */ "./node_modules/simple-date-piker-vue/src/components/Calendar.vue?vue&type=style&index=0&lang=scss&");
+/* harmony import */ var _vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _Calendar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Calendar_vue_vue_type_template_id_2054f3cc___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Calendar_vue_vue_type_template_id_2054f3cc___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "node_modules/simple-date-piker-vue/src/components/Calendar.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./node_modules/simple-date-piker-vue/src/components/Calendar.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************!*\
+  !*** ./node_modules/simple-date-piker-vue/src/components/Calendar.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _vue_loader_lib_index_js_vue_loader_options_Calendar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../vue-loader/lib??vue-loader-options!./Calendar.vue?vue&type=script&lang=js& */ "./node_modules/vue-loader/lib/index.js?!./node_modules/simple-date-piker-vue/src/components/Calendar.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_vue_loader_lib_index_js_vue_loader_options_Calendar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./node_modules/simple-date-piker-vue/src/components/Calendar.vue?vue&type=style&index=0&lang=scss&":
+/*!**********************************************************************************************************!*\
+  !*** ./node_modules/simple-date-piker-vue/src/components/Calendar.vue?vue&type=style&index=0&lang=scss& ***!
+  \**********************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _style_loader_index_js_css_loader_index_js_vue_loader_lib_loaders_stylePostLoader_js_postcss_loader_src_index_js_ref_7_2_sass_loader_lib_loader_js_ref_7_3_vue_loader_lib_index_js_vue_loader_options_Calendar_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../style-loader!../../../css-loader!../../../vue-loader/lib/loaders/stylePostLoader.js!../../../postcss-loader/src??ref--7-2!../../../sass-loader/lib/loader.js??ref--7-3!../../../vue-loader/lib??vue-loader-options!./Calendar.vue?vue&type=style&index=0&lang=scss& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./node_modules/simple-date-piker-vue/src/components/Calendar.vue?vue&type=style&index=0&lang=scss&");
+/* harmony import */ var _style_loader_index_js_css_loader_index_js_vue_loader_lib_loaders_stylePostLoader_js_postcss_loader_src_index_js_ref_7_2_sass_loader_lib_loader_js_ref_7_3_vue_loader_lib_index_js_vue_loader_options_Calendar_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_style_loader_index_js_css_loader_index_js_vue_loader_lib_loaders_stylePostLoader_js_postcss_loader_src_index_js_ref_7_2_sass_loader_lib_loader_js_ref_7_3_vue_loader_lib_index_js_vue_loader_options_Calendar_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _style_loader_index_js_css_loader_index_js_vue_loader_lib_loaders_stylePostLoader_js_postcss_loader_src_index_js_ref_7_2_sass_loader_lib_loader_js_ref_7_3_vue_loader_lib_index_js_vue_loader_options_Calendar_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _style_loader_index_js_css_loader_index_js_vue_loader_lib_loaders_stylePostLoader_js_postcss_loader_src_index_js_ref_7_2_sass_loader_lib_loader_js_ref_7_3_vue_loader_lib_index_js_vue_loader_options_Calendar_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_style_loader_index_js_css_loader_index_js_vue_loader_lib_loaders_stylePostLoader_js_postcss_loader_src_index_js_ref_7_2_sass_loader_lib_loader_js_ref_7_3_vue_loader_lib_index_js_vue_loader_options_Calendar_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./node_modules/simple-date-piker-vue/src/components/Calendar.vue?vue&type=template&id=2054f3cc&":
+/*!*******************************************************************************************************!*\
+  !*** ./node_modules/simple-date-piker-vue/src/components/Calendar.vue?vue&type=template&id=2054f3cc& ***!
+  \*******************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _vue_loader_lib_loaders_templateLoader_js_vue_loader_options_vue_loader_lib_index_js_vue_loader_options_Calendar_vue_vue_type_template_id_2054f3cc___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../vue-loader/lib??vue-loader-options!./Calendar.vue?vue&type=template&id=2054f3cc& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./node_modules/simple-date-piker-vue/src/components/Calendar.vue?vue&type=template&id=2054f3cc&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _vue_loader_lib_loaders_templateLoader_js_vue_loader_options_vue_loader_lib_index_js_vue_loader_options_Calendar_vue_vue_type_template_id_2054f3cc___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _vue_loader_lib_loaders_templateLoader_js_vue_loader_options_vue_loader_lib_index_js_vue_loader_options_Calendar_vue_vue_type_template_id_2054f3cc___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./node_modules/simple-date-piker-vue/src/components/DatePiker.vue":
+/*!*************************************************************************!*\
+  !*** ./node_modules/simple-date-piker-vue/src/components/DatePiker.vue ***!
+  \*************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _DatePiker_vue_vue_type_template_id_46519205_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./DatePiker.vue?vue&type=template&id=46519205&scoped=true& */ "./node_modules/simple-date-piker-vue/src/components/DatePiker.vue?vue&type=template&id=46519205&scoped=true&");
+/* harmony import */ var _DatePiker_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./DatePiker.vue?vue&type=script&lang=js& */ "./node_modules/simple-date-piker-vue/src/components/DatePiker.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _DatePiker_vue_vue_type_style_index_0_id_46519205_scoped_true_lang_scss___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./DatePiker.vue?vue&type=style&index=0&id=46519205&scoped=true&lang=scss& */ "./node_modules/simple-date-piker-vue/src/components/DatePiker.vue?vue&type=style&index=0&id=46519205&scoped=true&lang=scss&");
+/* harmony import */ var _vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _DatePiker_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _DatePiker_vue_vue_type_template_id_46519205_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _DatePiker_vue_vue_type_template_id_46519205_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "46519205",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "node_modules/simple-date-piker-vue/src/components/DatePiker.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./node_modules/simple-date-piker-vue/src/components/DatePiker.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************!*\
+  !*** ./node_modules/simple-date-piker-vue/src/components/DatePiker.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _vue_loader_lib_index_js_vue_loader_options_DatePiker_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../vue-loader/lib??vue-loader-options!./DatePiker.vue?vue&type=script&lang=js& */ "./node_modules/vue-loader/lib/index.js?!./node_modules/simple-date-piker-vue/src/components/DatePiker.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_vue_loader_lib_index_js_vue_loader_options_DatePiker_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./node_modules/simple-date-piker-vue/src/components/DatePiker.vue?vue&type=style&index=0&id=46519205&scoped=true&lang=scss&":
+/*!***********************************************************************************************************************************!*\
+  !*** ./node_modules/simple-date-piker-vue/src/components/DatePiker.vue?vue&type=style&index=0&id=46519205&scoped=true&lang=scss& ***!
+  \***********************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _style_loader_index_js_css_loader_index_js_vue_loader_lib_loaders_stylePostLoader_js_postcss_loader_src_index_js_ref_7_2_sass_loader_lib_loader_js_ref_7_3_vue_loader_lib_index_js_vue_loader_options_DatePiker_vue_vue_type_style_index_0_id_46519205_scoped_true_lang_scss___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../style-loader!../../../css-loader!../../../vue-loader/lib/loaders/stylePostLoader.js!../../../postcss-loader/src??ref--7-2!../../../sass-loader/lib/loader.js??ref--7-3!../../../vue-loader/lib??vue-loader-options!./DatePiker.vue?vue&type=style&index=0&id=46519205&scoped=true&lang=scss& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./node_modules/simple-date-piker-vue/src/components/DatePiker.vue?vue&type=style&index=0&id=46519205&scoped=true&lang=scss&");
+/* harmony import */ var _style_loader_index_js_css_loader_index_js_vue_loader_lib_loaders_stylePostLoader_js_postcss_loader_src_index_js_ref_7_2_sass_loader_lib_loader_js_ref_7_3_vue_loader_lib_index_js_vue_loader_options_DatePiker_vue_vue_type_style_index_0_id_46519205_scoped_true_lang_scss___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_style_loader_index_js_css_loader_index_js_vue_loader_lib_loaders_stylePostLoader_js_postcss_loader_src_index_js_ref_7_2_sass_loader_lib_loader_js_ref_7_3_vue_loader_lib_index_js_vue_loader_options_DatePiker_vue_vue_type_style_index_0_id_46519205_scoped_true_lang_scss___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _style_loader_index_js_css_loader_index_js_vue_loader_lib_loaders_stylePostLoader_js_postcss_loader_src_index_js_ref_7_2_sass_loader_lib_loader_js_ref_7_3_vue_loader_lib_index_js_vue_loader_options_DatePiker_vue_vue_type_style_index_0_id_46519205_scoped_true_lang_scss___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _style_loader_index_js_css_loader_index_js_vue_loader_lib_loaders_stylePostLoader_js_postcss_loader_src_index_js_ref_7_2_sass_loader_lib_loader_js_ref_7_3_vue_loader_lib_index_js_vue_loader_options_DatePiker_vue_vue_type_style_index_0_id_46519205_scoped_true_lang_scss___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_style_loader_index_js_css_loader_index_js_vue_loader_lib_loaders_stylePostLoader_js_postcss_loader_src_index_js_ref_7_2_sass_loader_lib_loader_js_ref_7_3_vue_loader_lib_index_js_vue_loader_options_DatePiker_vue_vue_type_style_index_0_id_46519205_scoped_true_lang_scss___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./node_modules/simple-date-piker-vue/src/components/DatePiker.vue?vue&type=template&id=46519205&scoped=true&":
+/*!********************************************************************************************************************!*\
+  !*** ./node_modules/simple-date-piker-vue/src/components/DatePiker.vue?vue&type=template&id=46519205&scoped=true& ***!
+  \********************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _vue_loader_lib_loaders_templateLoader_js_vue_loader_options_vue_loader_lib_index_js_vue_loader_options_DatePiker_vue_vue_type_template_id_46519205_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../vue-loader/lib??vue-loader-options!./DatePiker.vue?vue&type=template&id=46519205&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./node_modules/simple-date-piker-vue/src/components/DatePiker.vue?vue&type=template&id=46519205&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _vue_loader_lib_loaders_templateLoader_js_vue_loader_options_vue_loader_lib_index_js_vue_loader_options_DatePiker_vue_vue_type_template_id_46519205_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _vue_loader_lib_loaders_templateLoader_js_vue_loader_options_vue_loader_lib_index_js_vue_loader_options_DatePiker_vue_vue_type_template_id_46519205_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./node_modules/simple-date-piker-vue/src/components/calendar_parts/Body.vue":
+/*!***********************************************************************************!*\
+  !*** ./node_modules/simple-date-piker-vue/src/components/calendar_parts/Body.vue ***!
+  \***********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Body_vue_vue_type_template_id_5839e1b4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Body.vue?vue&type=template&id=5839e1b4& */ "./node_modules/simple-date-piker-vue/src/components/calendar_parts/Body.vue?vue&type=template&id=5839e1b4&");
+/* harmony import */ var _Body_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Body.vue?vue&type=script&lang=js& */ "./node_modules/simple-date-piker-vue/src/components/calendar_parts/Body.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _Body_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Body.vue?vue&type=style&index=0&lang=scss& */ "./node_modules/simple-date-piker-vue/src/components/calendar_parts/Body.vue?vue&type=style&index=0&lang=scss&");
+/* harmony import */ var _vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _Body_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Body_vue_vue_type_template_id_5839e1b4___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Body_vue_vue_type_template_id_5839e1b4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "node_modules/simple-date-piker-vue/src/components/calendar_parts/Body.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./node_modules/simple-date-piker-vue/src/components/calendar_parts/Body.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************!*\
+  !*** ./node_modules/simple-date-piker-vue/src/components/calendar_parts/Body.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _vue_loader_lib_index_js_vue_loader_options_Body_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../vue-loader/lib??vue-loader-options!./Body.vue?vue&type=script&lang=js& */ "./node_modules/vue-loader/lib/index.js?!./node_modules/simple-date-piker-vue/src/components/calendar_parts/Body.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_vue_loader_lib_index_js_vue_loader_options_Body_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./node_modules/simple-date-piker-vue/src/components/calendar_parts/Body.vue?vue&type=style&index=0&lang=scss&":
+/*!*********************************************************************************************************************!*\
+  !*** ./node_modules/simple-date-piker-vue/src/components/calendar_parts/Body.vue?vue&type=style&index=0&lang=scss& ***!
+  \*********************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _style_loader_index_js_css_loader_index_js_vue_loader_lib_loaders_stylePostLoader_js_postcss_loader_src_index_js_ref_7_2_sass_loader_lib_loader_js_ref_7_3_vue_loader_lib_index_js_vue_loader_options_Body_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../style-loader!../../../../css-loader!../../../../vue-loader/lib/loaders/stylePostLoader.js!../../../../postcss-loader/src??ref--7-2!../../../../sass-loader/lib/loader.js??ref--7-3!../../../../vue-loader/lib??vue-loader-options!./Body.vue?vue&type=style&index=0&lang=scss& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./node_modules/simple-date-piker-vue/src/components/calendar_parts/Body.vue?vue&type=style&index=0&lang=scss&");
+/* harmony import */ var _style_loader_index_js_css_loader_index_js_vue_loader_lib_loaders_stylePostLoader_js_postcss_loader_src_index_js_ref_7_2_sass_loader_lib_loader_js_ref_7_3_vue_loader_lib_index_js_vue_loader_options_Body_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_style_loader_index_js_css_loader_index_js_vue_loader_lib_loaders_stylePostLoader_js_postcss_loader_src_index_js_ref_7_2_sass_loader_lib_loader_js_ref_7_3_vue_loader_lib_index_js_vue_loader_options_Body_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _style_loader_index_js_css_loader_index_js_vue_loader_lib_loaders_stylePostLoader_js_postcss_loader_src_index_js_ref_7_2_sass_loader_lib_loader_js_ref_7_3_vue_loader_lib_index_js_vue_loader_options_Body_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _style_loader_index_js_css_loader_index_js_vue_loader_lib_loaders_stylePostLoader_js_postcss_loader_src_index_js_ref_7_2_sass_loader_lib_loader_js_ref_7_3_vue_loader_lib_index_js_vue_loader_options_Body_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_style_loader_index_js_css_loader_index_js_vue_loader_lib_loaders_stylePostLoader_js_postcss_loader_src_index_js_ref_7_2_sass_loader_lib_loader_js_ref_7_3_vue_loader_lib_index_js_vue_loader_options_Body_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./node_modules/simple-date-piker-vue/src/components/calendar_parts/Body.vue?vue&type=template&id=5839e1b4&":
+/*!******************************************************************************************************************!*\
+  !*** ./node_modules/simple-date-piker-vue/src/components/calendar_parts/Body.vue?vue&type=template&id=5839e1b4& ***!
+  \******************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _vue_loader_lib_loaders_templateLoader_js_vue_loader_options_vue_loader_lib_index_js_vue_loader_options_Body_vue_vue_type_template_id_5839e1b4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../vue-loader/lib??vue-loader-options!./Body.vue?vue&type=template&id=5839e1b4& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./node_modules/simple-date-piker-vue/src/components/calendar_parts/Body.vue?vue&type=template&id=5839e1b4&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _vue_loader_lib_loaders_templateLoader_js_vue_loader_options_vue_loader_lib_index_js_vue_loader_options_Body_vue_vue_type_template_id_5839e1b4___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _vue_loader_lib_loaders_templateLoader_js_vue_loader_options_vue_loader_lib_index_js_vue_loader_options_Body_vue_vue_type_template_id_5839e1b4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./node_modules/simple-date-piker-vue/src/components/calendar_parts/Header.vue":
+/*!*************************************************************************************!*\
+  !*** ./node_modules/simple-date-piker-vue/src/components/calendar_parts/Header.vue ***!
+  \*************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Header_vue_vue_type_template_id_2563ff91___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Header.vue?vue&type=template&id=2563ff91& */ "./node_modules/simple-date-piker-vue/src/components/calendar_parts/Header.vue?vue&type=template&id=2563ff91&");
+/* harmony import */ var _Header_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Header.vue?vue&type=script&lang=js& */ "./node_modules/simple-date-piker-vue/src/components/calendar_parts/Header.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _Header_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Header.vue?vue&type=style&index=0&lang=scss& */ "./node_modules/simple-date-piker-vue/src/components/calendar_parts/Header.vue?vue&type=style&index=0&lang=scss&");
+/* harmony import */ var _vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _Header_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Header_vue_vue_type_template_id_2563ff91___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Header_vue_vue_type_template_id_2563ff91___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "node_modules/simple-date-piker-vue/src/components/calendar_parts/Header.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./node_modules/simple-date-piker-vue/src/components/calendar_parts/Header.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************!*\
+  !*** ./node_modules/simple-date-piker-vue/src/components/calendar_parts/Header.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _vue_loader_lib_index_js_vue_loader_options_Header_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../vue-loader/lib??vue-loader-options!./Header.vue?vue&type=script&lang=js& */ "./node_modules/vue-loader/lib/index.js?!./node_modules/simple-date-piker-vue/src/components/calendar_parts/Header.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_vue_loader_lib_index_js_vue_loader_options_Header_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./node_modules/simple-date-piker-vue/src/components/calendar_parts/Header.vue?vue&type=style&index=0&lang=scss&":
+/*!***********************************************************************************************************************!*\
+  !*** ./node_modules/simple-date-piker-vue/src/components/calendar_parts/Header.vue?vue&type=style&index=0&lang=scss& ***!
+  \***********************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _style_loader_index_js_css_loader_index_js_vue_loader_lib_loaders_stylePostLoader_js_postcss_loader_src_index_js_ref_7_2_sass_loader_lib_loader_js_ref_7_3_vue_loader_lib_index_js_vue_loader_options_Header_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../style-loader!../../../../css-loader!../../../../vue-loader/lib/loaders/stylePostLoader.js!../../../../postcss-loader/src??ref--7-2!../../../../sass-loader/lib/loader.js??ref--7-3!../../../../vue-loader/lib??vue-loader-options!./Header.vue?vue&type=style&index=0&lang=scss& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./node_modules/simple-date-piker-vue/src/components/calendar_parts/Header.vue?vue&type=style&index=0&lang=scss&");
+/* harmony import */ var _style_loader_index_js_css_loader_index_js_vue_loader_lib_loaders_stylePostLoader_js_postcss_loader_src_index_js_ref_7_2_sass_loader_lib_loader_js_ref_7_3_vue_loader_lib_index_js_vue_loader_options_Header_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_style_loader_index_js_css_loader_index_js_vue_loader_lib_loaders_stylePostLoader_js_postcss_loader_src_index_js_ref_7_2_sass_loader_lib_loader_js_ref_7_3_vue_loader_lib_index_js_vue_loader_options_Header_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _style_loader_index_js_css_loader_index_js_vue_loader_lib_loaders_stylePostLoader_js_postcss_loader_src_index_js_ref_7_2_sass_loader_lib_loader_js_ref_7_3_vue_loader_lib_index_js_vue_loader_options_Header_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _style_loader_index_js_css_loader_index_js_vue_loader_lib_loaders_stylePostLoader_js_postcss_loader_src_index_js_ref_7_2_sass_loader_lib_loader_js_ref_7_3_vue_loader_lib_index_js_vue_loader_options_Header_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_style_loader_index_js_css_loader_index_js_vue_loader_lib_loaders_stylePostLoader_js_postcss_loader_src_index_js_ref_7_2_sass_loader_lib_loader_js_ref_7_3_vue_loader_lib_index_js_vue_loader_options_Header_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./node_modules/simple-date-piker-vue/src/components/calendar_parts/Header.vue?vue&type=template&id=2563ff91&":
+/*!********************************************************************************************************************!*\
+  !*** ./node_modules/simple-date-piker-vue/src/components/calendar_parts/Header.vue?vue&type=template&id=2563ff91& ***!
+  \********************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _vue_loader_lib_loaders_templateLoader_js_vue_loader_options_vue_loader_lib_index_js_vue_loader_options_Header_vue_vue_type_template_id_2563ff91___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../vue-loader/lib??vue-loader-options!./Header.vue?vue&type=template&id=2563ff91& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./node_modules/simple-date-piker-vue/src/components/calendar_parts/Header.vue?vue&type=template&id=2563ff91&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _vue_loader_lib_loaders_templateLoader_js_vue_loader_options_vue_loader_lib_index_js_vue_loader_options_Header_vue_vue_type_template_id_2563ff91___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _vue_loader_lib_loaders_templateLoader_js_vue_loader_options_vue_loader_lib_index_js_vue_loader_options_Header_vue_vue_type_template_id_2563ff91___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./node_modules/simple-date-piker-vue/src/components/event-bus.js":
+/*!************************************************************************!*\
+  !*** ./node_modules/simple-date-piker-vue/src/components/event-bus.js ***!
+  \************************************************************************/
+/*! exports provided: EventBusForDatePiker */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EventBusForDatePiker", function() { return EventBusForDatePiker; });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
+
+const EventBusForDatePiker = new vue__WEBPACK_IMPORTED_MODULE_0___default.a();
+
+/***/ }),
+
+/***/ "./node_modules/simple-date-piker-vue/src/main.js":
+/*!********************************************************!*\
+  !*** ./node_modules/simple-date-piker-vue/src/main.js ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _components_DatePiker_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/DatePiker.vue */ "./node_modules/simple-date-piker-vue/src/components/DatePiker.vue");
+
+/* harmony default export */ __webpack_exports__["default"] = (_components_DatePiker_vue__WEBPACK_IMPORTED_MODULE_0__["default"]);
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./node_modules/simple-date-piker-vue/src/components/Calendar.vue?vue&type=style&index=0&lang=scss&":
+/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/lib/loader.js??ref--7-3!./node_modules/vue-loader/lib??vue-loader-options!./node_modules/simple-date-piker-vue/src/components/Calendar.vue?vue&type=style&index=0&lang=scss& ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../css-loader!../../../vue-loader/lib/loaders/stylePostLoader.js!../../../postcss-loader/src??ref--7-2!../../../sass-loader/lib/loader.js??ref--7-3!../../../vue-loader/lib??vue-loader-options!./Calendar.vue?vue&type=style&index=0&lang=scss& */ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./node_modules/simple-date-piker-vue/src/components/Calendar.vue?vue&type=style&index=0&lang=scss&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./node_modules/simple-date-piker-vue/src/components/DatePiker.vue?vue&type=style&index=0&id=46519205&scoped=true&lang=scss&":
+/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/lib/loader.js??ref--7-3!./node_modules/vue-loader/lib??vue-loader-options!./node_modules/simple-date-piker-vue/src/components/DatePiker.vue?vue&type=style&index=0&id=46519205&scoped=true&lang=scss& ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../css-loader!../../../vue-loader/lib/loaders/stylePostLoader.js!../../../postcss-loader/src??ref--7-2!../../../sass-loader/lib/loader.js??ref--7-3!../../../vue-loader/lib??vue-loader-options!./DatePiker.vue?vue&type=style&index=0&id=46519205&scoped=true&lang=scss& */ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./node_modules/simple-date-piker-vue/src/components/DatePiker.vue?vue&type=style&index=0&id=46519205&scoped=true&lang=scss&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./node_modules/simple-date-piker-vue/src/components/calendar_parts/Body.vue?vue&type=style&index=0&lang=scss&":
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/lib/loader.js??ref--7-3!./node_modules/vue-loader/lib??vue-loader-options!./node_modules/simple-date-piker-vue/src/components/calendar_parts/Body.vue?vue&type=style&index=0&lang=scss& ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../../css-loader!../../../../vue-loader/lib/loaders/stylePostLoader.js!../../../../postcss-loader/src??ref--7-2!../../../../sass-loader/lib/loader.js??ref--7-3!../../../../vue-loader/lib??vue-loader-options!./Body.vue?vue&type=style&index=0&lang=scss& */ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./node_modules/simple-date-piker-vue/src/components/calendar_parts/Body.vue?vue&type=style&index=0&lang=scss&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./node_modules/simple-date-piker-vue/src/components/calendar_parts/Header.vue?vue&type=style&index=0&lang=scss&":
+/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/lib/loader.js??ref--7-3!./node_modules/vue-loader/lib??vue-loader-options!./node_modules/simple-date-piker-vue/src/components/calendar_parts/Header.vue?vue&type=style&index=0&lang=scss& ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../../css-loader!../../../../vue-loader/lib/loaders/stylePostLoader.js!../../../../postcss-loader/src??ref--7-2!../../../../sass-loader/lib/loader.js??ref--7-3!../../../../vue-loader/lib??vue-loader-options!./Header.vue?vue&type=style&index=0&lang=scss& */ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./node_modules/simple-date-piker-vue/src/components/calendar_parts/Header.vue?vue&type=style&index=0&lang=scss&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/CalendarComponent.vue?vue&type=style&index=0&id=56bbe5f8&scoped=true&lang=css&":
 /*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/CalendarComponent.vue?vue&type=style&index=0&id=56bbe5f8&scoped=true&lang=css& ***!
@@ -37151,6 +37791,36 @@ process.umask = function() { return 0; };
 
 
 var content = __webpack_require__(/*! !../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./CalendarComponent.vue?vue&type=style&index=0&id=56bbe5f8&scoped=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/CalendarComponent.vue?vue&type=style&index=0&id=56bbe5f8&scoped=true&lang=css&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ExpensesComponent.vue?vue&type=style&index=0&id=74df3447&scoped=true&lang=css&":
+/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ExpensesComponent.vue?vue&type=style&index=0&id=74df3447&scoped=true&lang=css& ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./ExpensesComponent.vue?vue&type=style&index=0&id=74df3447&scoped=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ExpensesComponent.vue?vue&type=style&index=0&id=74df3447&scoped=true&lang=css&");
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -37211,36 +37881,6 @@ if(false) {}
 
 
 var content = __webpack_require__(/*! !../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./HeadNavigation.vue?vue&type=style&index=0&id=3fade68e&scoped=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/parts/HeadNavigation.vue?vue&type=style&index=0&id=3fade68e&scoped=true&lang=css&");
-
-if(typeof content === 'string') content = [[module.i, content, '']];
-
-var transform;
-var insertInto;
-
-
-
-var options = {"hmr":true}
-
-options.transform = transform
-options.insertInto = undefined;
-
-var update = __webpack_require__(/*! ../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
-
-if(content.locals) module.exports = content.locals;
-
-if(false) {}
-
-/***/ }),
-
-/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/parts/SidebarNavigation.vue?vue&type=style&index=0&id=0c65f406&scoped=true&lang=css&":
-/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/parts/SidebarNavigation.vue?vue&type=style&index=0&id=0c65f406&scoped=true&lang=css& ***!
-  \*********************************************************************************************************************************************************************************************************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-var content = __webpack_require__(/*! !../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./SidebarNavigation.vue?vue&type=style&index=0&id=0c65f406&scoped=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/parts/SidebarNavigation.vue?vue&type=style&index=0&id=0c65f406&scoped=true&lang=css&");
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -37846,6 +38486,770 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/index.js?!./node_modules/simple-date-piker-vue/src/components/Calendar.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib??vue-loader-options!./node_modules/simple-date-piker-vue/src/components/Calendar.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _calendar_parts_Header_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./calendar_parts/Header.vue */ "./node_modules/simple-date-piker-vue/src/components/calendar_parts/Header.vue");
+/* harmony import */ var _calendar_parts_Body_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./calendar_parts/Body.vue */ "./node_modules/simple-date-piker-vue/src/components/calendar_parts/Body.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "DatePiker",
+  props: ["options"],
+  components: {
+    "calendar-header": _calendar_parts_Header_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
+    "calendar-body": _calendar_parts_Body_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
+  data() {
+    return {
+      month: new Date().getMonth(),
+      year: new Date().getFullYear()
+    };
+  },
+  computed: {
+    weeks() {
+      return this.buildCalendarBody();
+    }
+  },
+  methods: {
+    prevMonth() {
+      if (this.month == 0) {
+        this.month = 11;
+        this.year--;
+      } else {
+        this.month--;
+      }
+    },
+    nextMonth() {
+      if (this.month == 11) {
+        this.month = 0;
+        this.year++;
+      } else {
+        this.month++;
+      }
+    },
+    getDaysQuantityInMonth(year, month) {
+      return new Date(year, month, 0).getDate();
+    },
+    buildCalendarBody() {
+      let daysQuantity = this.getDaysQuantityInMonth(this.year, this.month + 1);
+      let previousMonthDaysQuantity = this.getDaysQuantityInMonth(
+        this.year,
+        this.month
+      );
+
+      let startDayOfMonth = this.getDayForLoop(
+        new Date(this.year, this.month, 1).getDay()
+      );
+
+      let weeksCounter = 1;
+
+      let weeks = {
+        1: [],
+        2: [],
+        3: [],
+        4: [],
+        5: [],
+        6: []
+      };
+
+      for (let i = 1; i <= 42; i++) {
+        // 42 - 6 weeks * 7 dyas
+        if (i < startDayOfMonth) {
+          this.prevMonthDaysQuantity++;
+          weeks[weeksCounter].push(
+            previousMonthDaysQuantity - (startDayOfMonth - i - 1) + " prev"
+          );
+        } else if (i - startDayOfMonth >= daysQuantity) {
+          if (i % 7 === 0) {
+            weeks[weeksCounter].push(
+              i - daysQuantity - startDayOfMonth + 1 + " next"
+            );
+            weeksCounter++;
+          } else {
+            weeks[weeksCounter].push(
+              i - daysQuantity - startDayOfMonth + 1 + " next"
+            );
+          }
+        } else {
+          let delta = startDayOfMonth - 1; // because days counts from 1;
+          let dayOfWeek = new Date(this.year, this.month, i - delta).getDay();
+
+          if (dayOfWeek === 0) {
+            weeks[weeksCounter].push(i - delta);
+            weeksCounter++;
+          } else {
+            weeks[weeksCounter].push(i - delta);
+          }
+        }
+      }
+
+      return weeks;
+    },
+    getDayForLoop(num) {
+      switch (num) {
+        case 0:
+          return 7;
+          break;
+        case 1:
+          return 1;
+          break;
+        case 2:
+          return 2;
+          break;
+        case 3:
+          return 3;
+          break;
+        case 4:
+          return 4;
+          break;
+        case 5:
+          return 5;
+          break;
+        case 6:
+          return 6;
+          break;
+      }
+    }
+  },
+  mounted() {
+    this.buildCalendarBody();
+  }
+});
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/index.js?!./node_modules/simple-date-piker-vue/src/components/DatePiker.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib??vue-loader-options!./node_modules/simple-date-piker-vue/src/components/DatePiker.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _event_bus_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./event-bus.js */ "./node_modules/simple-date-piker-vue/src/components/event-bus.js");
+/* harmony import */ var _Calendar_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Calendar.vue */ "./node_modules/simple-date-piker-vue/src/components/Calendar.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "DatePiker",
+  props: {
+    value: {
+      default: ""
+    },
+    options: {
+      type: Object,
+      default: function() {
+        return {
+          useCurrentDate: true,
+          locale: "EN-en",
+          dateFormat: "dd/mm/YYYY"
+        };
+      }
+    }
+  },
+  data() {
+    return {
+      dateToShowInInput: "",
+      showCalendar: false
+    };
+  },
+  methods: {
+    handleInput(e) {
+      this.$emit("input", this.dateToShowInInput);
+    }
+  },
+  components: {
+    calendar: _Calendar_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
+  created() {
+    let vm = this;
+    _event_bus_js__WEBPACK_IMPORTED_MODULE_0__["EventBusForDatePiker"].$on("hideCalendar", () => {
+      vm.showCalendar = false;
+
+      if (!vm.dateToShowInInput) {
+        vm.dateToShowInInput = "";
+        this.$emit("input", vm.dateToShowInInput);
+      }
+    });
+    _event_bus_js__WEBPACK_IMPORTED_MODULE_0__["EventBusForDatePiker"].$on("dateWasSent", date => {
+      vm.dateToShowInInput = date;
+      vm.showCalendar = false;
+      this.$emit("input", date);
+    });
+
+    /*Set current date if appropriate iption is set*/
+    if (this.options.useCurrentDate) {
+      let todaysDay = new Date().getDate();
+      let todaysMonth = new Date().getMonth();
+      let todaysYear = new Date().getFullYear();
+
+      if (todaysMonth >= 0 && todaysMonth < 10) {
+        todaysMonth = "0" + (todaysMonth + 1);
+      } else {
+        todaysMonth = todaysMonth + 1;
+      }
+
+      if (todaysDay >= 1 && todaysDay < 10) {
+        todaysDay = "0" + todaysDay;
+      }
+
+      let requestedFormat = this.options.dateFormat
+        ? this.options.dateFormat
+        : "dd-mm-YYYY";
+      let dateForReturn;
+
+      switch (requestedFormat) {
+        case "dd-mm-YYYY":
+          dateForReturn = todaysDay + "-" + todaysMonth + "-" + todaysYear;
+          break;
+        case "dd/mm/YYYY":
+          dateForReturn = todaysDay + "/" + todaysMonth + "/" + todaysYear;
+          break;
+        case "mm/dd/YYYY":
+          dateForReturn = todaysMonth + "/" + todaysDay + "/" + todaysYear;
+          break;
+      }
+
+      vm.dateToShowInInput = dateForReturn;
+      this.$emit("input", vm.dateToShowInInput);
+    }
+  }
+});
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/index.js?!./node_modules/simple-date-piker-vue/src/components/calendar_parts/Body.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib??vue-loader-options!./node_modules/simple-date-piker-vue/src/components/calendar_parts/Body.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _event_bus_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../event-bus.js */ "./node_modules/simple-date-piker-vue/src/components/event-bus.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ["weeks", "month", "year", "options"],
+  computed: {
+    weekDays() {
+      let ruDays = ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"];
+      let uaDays = ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Нд"];
+      let enDays = ["Mo.", "Tu.", "We.", "Th.", "Fr.", "Sa.", "Su."];
+      let deDays = ["Mo.", "Di.", "Mi.", "Do.", "Fr.", "Sa.", "So."];
+
+      let locale = this.options.locale ? this.options.locale : "EN-en";
+
+      switch (locale) {
+        case "UK-ua":
+          return uaDays;
+          break;
+        case "RU-ru":
+          return ruDays;
+          break;
+        case "EN-en":
+          return enDays;
+          break;
+        case "DE-de":
+          return deDays;
+          break;
+      }
+    }
+  },
+  methods: {
+    /*Used method instead of filter because of we need to add css class to elem*/
+    filterDays(value) {
+      if (typeof value === "string") {
+        let day = value.split(" ")[0];
+        return "<span class='not-current-month'>" + day + "</span>";
+      } else {
+        return value;
+      }
+    },
+    sendDate(day) {
+      let month = this.month;
+
+      if (typeof day === "string") {
+        let parts = day.split(" ");
+        day = parts[0];
+        let remark = parts[1];
+
+        if (remark == "prev") {
+          month--;
+        } else {
+          month++;
+        }
+      }
+
+      if (month >= 0 && month < 10) {
+        month = "0" + (month + 1);
+      } else {
+        month = month + 1;
+      }
+
+      if (day >= 1 && day < 10) {
+        day = "0" + day;
+      }
+
+      let requestedFormat = this.options.dateFormat ? this.options.dateFormat : "dd/mm/YYYY";
+      let dateForReturn;
+
+      switch (requestedFormat) {
+        case "dd-mm-YYYY":
+          dateForReturn = day + "-" + month + "-" + this.year;
+          break;
+        case "dd/mm/YYYY":
+          dateForReturn = day + "/" + month + "/" + this.year;
+          break;
+        case "mm/dd/YYYY":
+          dateForReturn = month + "/" + day + "/" + this.year;
+          break;
+      }
+
+      _event_bus_js__WEBPACK_IMPORTED_MODULE_0__["EventBusForDatePiker"].$emit("dateWasSent", dateForReturn);
+    }
+  }
+});
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/index.js?!./node_modules/simple-date-piker-vue/src/components/calendar_parts/Header.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib??vue-loader-options!./node_modules/simple-date-piker-vue/src/components/calendar_parts/Header.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _event_bus_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../event-bus.js */ "./node_modules/simple-date-piker-vue/src/components/event-bus.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ["month", "year", "options"],
+  computed: {
+    calendarDate() {
+      let settings = {
+        year: "numeric",
+        month: "long",
+        timezone: "UTC+2"
+      };
+      let locale = this.options.locale ? this.options.locale : "EN-en";
+      return new Date(this.year, this.month).toLocaleString(locale, settings);
+    }
+  },
+  methods: {
+    prevMonth() {
+      this.$emit("prevMonth");
+    },
+    nextMonth() {
+      this.$emit("nextMonth");
+    },
+    hideCalendar() {
+      _event_bus_js__WEBPACK_IMPORTED_MODULE_0__["EventBusForDatePiker"].$emit("hideCalendar");
+    }
+  }
+});
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./node_modules/simple-date-piker-vue/src/components/Calendar.vue?vue&type=template&id=2054f3cc&":
+/*!*************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./node_modules/simple-date-piker-vue/src/components/Calendar.vue?vue&type=template&id=2054f3cc& ***!
+  \*************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "calendar" },
+    [
+      _c("calendar-header", {
+        attrs: { month: _vm.month, year: _vm.year, options: _vm.options },
+        on: { prevMonth: _vm.prevMonth, nextMonth: _vm.nextMonth }
+      }),
+      _vm._v(" "),
+      _c("calendar-body", {
+        attrs: {
+          month: _vm.month,
+          year: _vm.year,
+          weeks: _vm.weeks,
+          options: _vm.options
+        }
+      })
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./node_modules/simple-date-piker-vue/src/components/DatePiker.vue?vue&type=template&id=46519205&scoped=true&":
+/*!**************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./node_modules/simple-date-piker-vue/src/components/DatePiker.vue?vue&type=template&id=46519205&scoped=true& ***!
+  \**************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticStyle: { position: "relative" } },
+    [
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.dateToShowInInput,
+            expression: "dateToShowInInput"
+          }
+        ],
+        staticClass: "form-control",
+        attrs: { type: "text", id: "inputForDatePiker" },
+        domProps: { value: _vm.dateToShowInInput },
+        on: {
+          focus: function($event) {
+            _vm.showCalendar = true
+          },
+          input: [
+            function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.dateToShowInInput = $event.target.value
+            },
+            _vm.handleInput
+          ]
+        }
+      }),
+      _vm._v(" "),
+      _vm.showCalendar
+        ? _c("calendar", {
+            staticClass: "calendar-component",
+            attrs: { options: _vm.options }
+          })
+        : _vm._e()
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./node_modules/simple-date-piker-vue/src/components/calendar_parts/Body.vue?vue&type=template&id=5839e1b4&":
+/*!************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./node_modules/simple-date-piker-vue/src/components/calendar_parts/Body.vue?vue&type=template&id=5839e1b4& ***!
+  \************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("table", { staticClass: "table-calendar" }, [
+      _c("thead", [
+        _c(
+          "tr",
+          _vm._l(_vm.weekDays, function(weekDay, index) {
+            return _c("th", { key: index }, [_vm._v(_vm._s(weekDay))])
+          }),
+          0
+        )
+      ]),
+      _vm._v(" "),
+      _c(
+        "tbody",
+        _vm._l(_vm.weeks, function(week, index) {
+          return _c(
+            "tr",
+            { key: index },
+            _vm._l(week, function(day, ind) {
+              return _c(
+                "td",
+                {
+                  key: ind,
+                  on: {
+                    click: function($event) {
+                      return _vm.sendDate(day)
+                    }
+                  }
+                },
+                [
+                  _c("span", {
+                    domProps: { innerHTML: _vm._s(_vm.filterDays(day)) }
+                  })
+                ]
+              )
+            }),
+            0
+          )
+        }),
+        0
+      )
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./node_modules/simple-date-piker-vue/src/components/calendar_parts/Header.vue?vue&type=template&id=2563ff91&":
+/*!**************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./node_modules/simple-date-piker-vue/src/components/calendar_parts/Header.vue?vue&type=template&id=2563ff91& ***!
+  \**************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "header-elems-container" }, [
+      _c("div", { staticClass: "switchers-container" }, [
+        _c(
+          "div",
+          {
+            staticClass: "month-switcher",
+            on: {
+              click: function($event) {
+                return _vm.prevMonth()
+              }
+            }
+          },
+          [
+            _c(
+              "svg",
+              {
+                staticStyle: { width: "25px", height: "25px" },
+                attrs: {
+                  viewBox: "0 0 100 100",
+                  xmlns: "http://www.w3.org/2000/svg"
+                }
+              },
+              [
+                _c("path", {
+                  attrs: {
+                    stroke: "black",
+                    "stroke-width": ".2",
+                    d: "M70 0, l -50 50, 50 50, 10 0, -50 -50, 50 -50 z"
+                  }
+                })
+              ]
+            )
+          ]
+        ),
+        _vm._v(" "),
+        _c("span", { staticClass: "calendar-date" }, [
+          _vm._v(_vm._s(_vm.calendarDate))
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "month-switcher",
+            on: {
+              click: function($event) {
+                return _vm.nextMonth()
+              }
+            }
+          },
+          [
+            _c(
+              "svg",
+              {
+                staticStyle: { width: "25px", height: "25px" },
+                attrs: {
+                  viewBox: "0 0 100 100",
+                  xmlns: "http://www.w3.org/2000/svg"
+                }
+              },
+              [
+                _c("path", {
+                  attrs: {
+                    stroke: "black",
+                    "stroke-width": ".2",
+                    d: "M30 0 l 50 50, -50 50, -10 0, 50 -50, -50 -50 z"
+                  }
+                })
+              ]
+            )
+          ]
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "close-button-container" }, [
+        _c(
+          "button",
+          {
+            staticClass: "hide-calendar",
+            on: {
+              click: function($event) {
+                return _vm.hideCalendar()
+              }
+            }
+          },
+          [
+            _c("span", { staticClass: "one" }),
+            _vm._v(" "),
+            _c("span", { staticClass: "two" })
+          ]
+        )
+      ])
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/CalendarComponent.vue?vue&type=template&id=56bbe5f8&scoped=true&":
 /*!********************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/CalendarComponent.vue?vue&type=template&id=56bbe5f8&scoped=true& ***!
@@ -37902,22 +39306,226 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-12" }, [
+        _c("h2", { staticClass: "admin-welcome-h2 text-center" }, [
+          _vm._v("\n            Витрати\n         ")
+        ]),
+        _vm._v(" "),
+        _c("hr"),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c(
+            "div",
+            {
+              staticClass: "col-12 text-left add-expense",
+              on: { click: _vm.checkModal }
+            },
+            [_c("span", [_vm._v("+")])]
+          )
+        ]),
+        _vm._v(" "),
+        _vm._m(0)
+      ])
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        ref: "modalwrapper",
+        staticClass: "modal justify-content-center align-items-center",
+        attrs: { id: "modal-wrapper" }
+      },
+      [
+        _c(
+          "div",
+          {
+            staticClass:
+              "animate col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5 add-expense-form-container"
+          },
+          [
+            _c("h2", { staticClass: "admin-welcome-h2 text-center" }, [
+              _vm._v("\n            Додати витрати\n         ")
+            ]),
+            _vm._v(" "),
+            _c("hr"),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "form-group" },
+              [
+                _c("label", { attrs: { for: "date" } }, [_vm._v("Дата")]),
+                _vm._v(" "),
+                _c("date-piker", {
+                  attrs: { id: "date", options: _vm.options },
+                  model: {
+                    value: _vm.date,
+                    callback: function($$v) {
+                      _vm.date = $$v
+                    },
+                    expression: "date"
+                  }
+                })
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _vm._m(1),
+            _vm._v(" "),
+            _vm._m(2),
+            _vm._v(" "),
+            _c("hr", { staticClass: "button-separator" }),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "form-group d-flex justify-content-between mt-4" },
+              [
+                _c("button", { staticClass: "col-4 btn btn-success" }, [
+                  _vm._v("Додати")
+                ]),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "col-4 btn btn-danger",
+                    on: { click: _vm.checkModal }
+                  },
+                  [_vm._v("Відмінити")]
+                )
+              ]
+            )
+          ]
+        )
+      ]
+    )
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-12" }, [
-          _c("h2", { staticClass: "admin-welcome-h2 text-center" }, [
-            _vm._v("\n            Витрати\n         ")
-          ]),
-          _vm._v(" "),
-          _c("hr")
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-12" }, [
+        _c("div", { staticClass: "table-responsive" }, [
+          _c(
+            "table",
+            { staticClass: "table table-bordered table-hover table-expenses" },
+            [
+              _c("thead", [
+                _c("tr", [
+                  _c("th", [_vm._v("№")]),
+                  _vm._v(" "),
+                  _c("th", [_vm._v("Дата")]),
+                  _vm._v(" "),
+                  _c("th", [_vm._v("Категорія")]),
+                  _vm._v(" "),
+                  _c("th", [_vm._v("Сума, грн")]),
+                  _vm._v(" "),
+                  _c("th", [_vm._v("Дії")])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("tbody", [
+                _c("tr", [
+                  _c("td", [_vm._v("1")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v("02/04/2019")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v("Медецина")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v("63,80")]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _c("i", {
+                      staticClass: "edit-i fas fa-pencil-alt",
+                      attrs: { title: "Редагувати" }
+                    }),
+                    _vm._v(" "),
+                    _c("a", { attrs: { title: "Видалити" } }, [
+                      _c("i", { staticClass: "delete-i fas fa-times" })
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("tr", [
+                  _c("td", [_vm._v("2")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v("02/04/2019")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v("Продукти")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v("251,62")]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _c("i", { staticClass: "edit-i fas fa-pencil-alt" }),
+                    _vm._v(" "),
+                    _c("a", { attrs: { title: "Видалити" } }, [
+                      _c("i", { staticClass: "delete-i fas fa-times" })
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("tr", [
+                  _c("td", [_vm._v("3")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v("02/04/2019")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v("Автомобіль")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v("200,00")]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _c("i", { staticClass: "edit-i fas fa-pencil-alt" }),
+                    _vm._v(" "),
+                    _c("a", { attrs: { title: "Видалити" } }, [
+                      _c("i", { staticClass: "delete-i fas fa-times" })
+                    ])
+                  ])
+                ])
+              ])
+            ]
+          )
         ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c("label", { attrs: { for: "category" } }, [_vm._v("Категорія")]),
+      _vm._v(" "),
+      _c("select", { staticClass: "form-control", attrs: { id: "category" } }, [
+        _c("option", [_vm._v("Автомобіль")]),
+        _vm._v(" "),
+        _c("option", [_vm._v("Ліки")]),
+        _vm._v(" "),
+        _c("option", [_vm._v("Продукти")]),
+        _vm._v(" "),
+        _c("option", [_vm._v("Комунальні")]),
+        _vm._v(" "),
+        _c("option", [_vm._v("Інше")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c("label", { attrs: { for: "sum" } }, [_vm._v("Сума, грн")]),
+      _vm._v(" "),
+      _c("input", {
+        staticClass: "form-control",
+        attrs: { type: "text", id: "sum" }
+      }),
+      _vm._v(" "),
+      _c("small", [
+        _c("b", [_vm._v("Увага!")]),
+        _vm._v(" Дробні числа необхідно вводити через крапку.")
       ])
     ])
   }
@@ -37947,8 +39555,6 @@ var render = function() {
     "div",
     [
       _c("head-navigation"),
-      _vm._v(" "),
-      _c("sidebar-navigation"),
       _vm._v(" "),
       _c("section", { attrs: { id: "main-content" } }, [
         _c("div", { staticClass: "content" }, [_c("router-view")], 1)
@@ -38067,183 +39673,46 @@ var render = function() {
   return _c("div", [
     _c("header", { staticClass: "header" }, [
       _c("nav", { staticClass: "top-nav" }, [
-        _c("div", { staticClass: "nav-hamburger-menu-container" }, [
+        _c("div", { staticClass: "nav-links-container" }, [
           _c(
             "div",
-            {
-              attrs: { id: "hamburger_menu" },
-              on: {
-                click: function($event) {
-                  return _vm.toggleSidebar()
-                }
-              }
-            },
-            [_c("span"), _vm._v(" "), _c("span"), _vm._v(" "), _c("span")]
-          ),
-          _vm._v(" "),
-          _vm._m(0)
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "nav-profile-container" }, [
-          _c("ul", { staticClass: "navbar-nav mr-auto" }, [
-            _c("li", { staticClass: "nav-item dropdown" }, [
+            { staticClass: "admin_panel_title" },
+            [
               _c(
-                "a",
+                "router-link",
                 {
-                  staticClass: "admin-profile",
-                  attrs: { "aria-expanded": "true" },
-                  on: {
-                    click: function($event) {
-                      return _vm.toggleDropdown($event)
-                    }
+                  attrs: {
+                    to: "/",
+                    tag: "a",
+                    "active-class": "active",
+                    exact: ""
                   }
                 },
-                [
-                  _c("span", { staticClass: "admin-name" }, [
-                    _vm._v(_vm._s(_vm.username))
-                  ]),
-                  _vm._v(" "),
-                  _c("i", { staticClass: "fas fa-caret-down" })
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "dropdown-menu admin-profile-dropdown" },
-                [
-                  _c(
-                    "a",
-                    {
-                      staticClass: "dropdown-item",
-                      attrs: { onclick: "event.preventDefault()" },
-                      on: {
-                        click: function($event) {
-                          return _vm.logout()
-                        }
-                      }
-                    },
-                    [
-                      _c("i", {
-                        staticClass: "fas fa-sign-in-alt",
-                        staticStyle: { transform: "rotate(180deg)" }
-                      }),
-                      _vm._v(" Вихід")
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "form",
-                    {
-                      staticStyle: { display: "none" },
-                      attrs: {
-                        id: "logout-form",
-                        action: "/logout",
-                        method: "POST"
-                      }
-                    },
-                    [
-                      _c("input", {
-                        attrs: {
-                          type: "hidden",
-                          name: "_token",
-                          id: "csrf-token"
-                        },
-                        domProps: { value: _vm.csrf_token }
-                      })
-                    ]
-                  )
-                ]
+                [_c("span", [_vm._v("Accountant")])]
               )
-            ])
-          ])
-        ])
-      ])
-    ])
-  ])
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "admin_panel_title" }, [
-      _c("img", {
-        attrs: { width: "32", src: __webpack_require__(/*! ../../../images/money.svg */ "./resources/images/money.svg") }
-      }),
-      _vm._v(" "),
-      _c("span", [_vm._v("Accountant")])
-    ])
-  }
-]
-render._withStripped = true
-
-
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/parts/SidebarNavigation.vue?vue&type=template&id=0c65f406&scoped=true&":
-/*!**************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/parts/SidebarNavigation.vue?vue&type=template&id=0c65f406&scoped=true& ***!
-  \**************************************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("aside", [
-      _c("div", { attrs: { id: "sidebar-nav" } }, [
+            ],
+            1
+          )
+        ]),
+        _vm._v(" "),
         _c(
-          "ul",
-          { staticClass: "sidebar-menu" },
+          "div",
+          { staticClass: "nav-profile-container" },
           [
             _c(
               "router-link",
               {
                 attrs: {
-                  to: "/",
-                  tag: "li",
-                  "active-class": "active",
-                  exact: ""
-                }
-              },
-              [
-                _c("a", [
-                  _c("span", { staticClass: "i-wrap" }, [
-                    _c("i", { staticClass: "fas fa-tachometer-alt" })
-                  ]),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "nav-a-text" }, [
-                    _vm._v("Звітність")
-                  ])
-                ])
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "router-link",
-              {
-                attrs: {
                   to: "/expenses",
-                  tag: "li",
+                  tag: "a",
                   "active-class": "active",
                   exact: ""
                 }
               },
               [
-                _c("a", [
-                  _c("span", { staticClass: "i-wrap" }, [
-                    _c("i", { staticClass: "fas fa-dollar-sign" })
-                  ]),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "nav-a-text" }, [_vm._v("Витрати")])
-                ])
+                _c("i", { staticClass: "fas fa-dollar-sign" }),
+                _vm._v(" "),
+                _c("span", { staticClass: "nav-a-text" }, [_vm._v(" Витрати")])
               ]
             ),
             _vm._v(" "),
@@ -38252,23 +39721,51 @@ var render = function() {
               {
                 attrs: {
                   to: "/calendar",
-                  tag: "li",
+                  tag: "a",
                   "active-class": "active",
                   exact: ""
                 }
               },
               [
-                _c("a", [
-                  _c("span", { staticClass: "i-wrap" }, [
-                    _c("i", { staticClass: "far fa-calendar-alt" })
-                  ]),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "nav-a-text" }, [
-                    _vm._v("Календар")
-                  ])
-                ])
+                _c("i", { staticClass: "far fa-calendar-alt" }),
+                _vm._v(" "),
+                _c("span", { staticClass: "nav-a-text" }, [_vm._v(" Календар")])
               ]
-            )
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "logout-container" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "logout",
+                  attrs: { onclick: "event.preventDefault()" },
+                  on: {
+                    click: function($event) {
+                      return _vm.logout()
+                    }
+                  }
+                },
+                [_c("i", { staticClass: "fas fa-power-off" })]
+              ),
+              _vm._v(" "),
+              _c(
+                "form",
+                {
+                  staticStyle: { display: "none" },
+                  attrs: {
+                    id: "logout-form",
+                    action: "/logout",
+                    method: "POST"
+                  }
+                },
+                [
+                  _c("input", {
+                    attrs: { type: "hidden", name: "_token", id: "csrf-token" },
+                    domProps: { value: _vm.csrf_token }
+                  })
+                ]
+              )
+            ])
           ],
           1
         )
@@ -54069,17 +55566,6 @@ module.exports = function(module) {
 
 /***/ }),
 
-/***/ "./resources/images/money.svg":
-/*!************************************!*\
-  !*** ./resources/images/money.svg ***!
-  \************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "/images/money.svg?79d2e2ad83a5553d0c8d67ca3dfae909";
-
-/***/ }),
-
 /***/ "./resources/js/app.js":
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
@@ -54294,7 +55780,9 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ExpensesComponent_vue_vue_type_template_id_74df3447_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ExpensesComponent.vue?vue&type=template&id=74df3447&scoped=true& */ "./resources/js/components/ExpensesComponent.vue?vue&type=template&id=74df3447&scoped=true&");
 /* harmony import */ var _ExpensesComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ExpensesComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/ExpensesComponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _ExpensesComponent_vue_vue_type_style_index_0_id_74df3447_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ExpensesComponent.vue?vue&type=style&index=0&id=74df3447&scoped=true&lang=css& */ "./resources/js/components/ExpensesComponent.vue?vue&type=style&index=0&id=74df3447&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
 
 
 
@@ -54302,7 +55790,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
   _ExpensesComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
   _ExpensesComponent_vue_vue_type_template_id_74df3447_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
   _ExpensesComponent_vue_vue_type_template_id_74df3447_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
@@ -54331,6 +55819,22 @@ component.options.__file = "resources/js/components/ExpensesComponent.vue"
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ExpensesComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./ExpensesComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ExpensesComponent.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ExpensesComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/ExpensesComponent.vue?vue&type=style&index=0&id=74df3447&scoped=true&lang=css&":
+/*!****************************************************************************************************************!*\
+  !*** ./resources/js/components/ExpensesComponent.vue?vue&type=style&index=0&id=74df3447&scoped=true&lang=css& ***!
+  \****************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ExpensesComponent_vue_vue_type_style_index_0_id_74df3447_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader!../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./ExpensesComponent.vue?vue&type=style&index=0&id=74df3447&scoped=true&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ExpensesComponent.vue?vue&type=style&index=0&id=74df3447&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ExpensesComponent_vue_vue_type_style_index_0_id_74df3447_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ExpensesComponent_vue_vue_type_style_index_0_id_74df3447_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ExpensesComponent_vue_vue_type_style_index_0_id_74df3447_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ExpensesComponent_vue_vue_type_style_index_0_id_74df3447_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ExpensesComponent_vue_vue_type_style_index_0_id_74df3447_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 
@@ -54659,93 +56163,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_HeadNavigation_vue_vue_type_template_id_3fade68e_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_HeadNavigation_vue_vue_type_template_id_3fade68e_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
-/***/ "./resources/js/components/parts/SidebarNavigation.vue":
-/*!*************************************************************!*\
-  !*** ./resources/js/components/parts/SidebarNavigation.vue ***!
-  \*************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _SidebarNavigation_vue_vue_type_template_id_0c65f406_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SidebarNavigation.vue?vue&type=template&id=0c65f406&scoped=true& */ "./resources/js/components/parts/SidebarNavigation.vue?vue&type=template&id=0c65f406&scoped=true&");
-/* harmony import */ var _SidebarNavigation_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SidebarNavigation.vue?vue&type=script&lang=js& */ "./resources/js/components/parts/SidebarNavigation.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _SidebarNavigation_vue_vue_type_style_index_0_id_0c65f406_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./SidebarNavigation.vue?vue&type=style&index=0&id=0c65f406&scoped=true&lang=css& */ "./resources/js/components/parts/SidebarNavigation.vue?vue&type=style&index=0&id=0c65f406&scoped=true&lang=css&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
-  _SidebarNavigation_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _SidebarNavigation_vue_vue_type_template_id_0c65f406_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _SidebarNavigation_vue_vue_type_template_id_0c65f406_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  "0c65f406",
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/parts/SidebarNavigation.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/components/parts/SidebarNavigation.vue?vue&type=script&lang=js&":
-/*!**************************************************************************************!*\
-  !*** ./resources/js/components/parts/SidebarNavigation.vue?vue&type=script&lang=js& ***!
-  \**************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SidebarNavigation_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./SidebarNavigation.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/parts/SidebarNavigation.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SidebarNavigation_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/components/parts/SidebarNavigation.vue?vue&type=style&index=0&id=0c65f406&scoped=true&lang=css&":
-/*!**********************************************************************************************************************!*\
-  !*** ./resources/js/components/parts/SidebarNavigation.vue?vue&type=style&index=0&id=0c65f406&scoped=true&lang=css& ***!
-  \**********************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_SidebarNavigation_vue_vue_type_style_index_0_id_0c65f406_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader!../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./SidebarNavigation.vue?vue&type=style&index=0&id=0c65f406&scoped=true&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/parts/SidebarNavigation.vue?vue&type=style&index=0&id=0c65f406&scoped=true&lang=css&");
-/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_SidebarNavigation_vue_vue_type_style_index_0_id_0c65f406_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_SidebarNavigation_vue_vue_type_style_index_0_id_0c65f406_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_SidebarNavigation_vue_vue_type_style_index_0_id_0c65f406_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_SidebarNavigation_vue_vue_type_style_index_0_id_0c65f406_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
- /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_SidebarNavigation_vue_vue_type_style_index_0_id_0c65f406_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
-
-/***/ }),
-
-/***/ "./resources/js/components/parts/SidebarNavigation.vue?vue&type=template&id=0c65f406&scoped=true&":
-/*!********************************************************************************************************!*\
-  !*** ./resources/js/components/parts/SidebarNavigation.vue?vue&type=template&id=0c65f406&scoped=true& ***!
-  \********************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SidebarNavigation_vue_vue_type_template_id_0c65f406_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./SidebarNavigation.vue?vue&type=template&id=0c65f406&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/parts/SidebarNavigation.vue?vue&type=template&id=0c65f406&scoped=true&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SidebarNavigation_vue_vue_type_template_id_0c65f406_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SidebarNavigation_vue_vue_type_template_id_0c65f406_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

@@ -3,30 +3,29 @@
       <!-- Header Nav -->
       <header class="header">
          <nav class="top-nav">
-            <div class="nav-hamburger-menu-container">
-               <div @click="toggleSidebar()" id="hamburger_menu">
-                  <span></span>
-                  <span></span>
-                  <span></span>
-               </div>
+            <div class="nav-links-container">
                <div class="admin_panel_title">
-                  <img width="32" src="../../../images/money.svg"> <span>Accountant</span>
+                  <router-link to="/" tag="a" active-class="active" exact>
+                     <span>Accountant</span>
+                  </router-link>
                </div>
             </div>
+
             <div class="nav-profile-container">
-               <ul class="navbar-nav mr-auto">
-                  <li class="nav-item dropdown">
-                     <a class="admin-profile" @click="toggleDropdown($event)" aria-expanded="true">
-                        <span class="admin-name">{{ username }}</span> <i class="fas fa-caret-down"></i>
-                     </a>
-                     <div class="dropdown-menu admin-profile-dropdown">
-                        <a @click="logout()" class="dropdown-item" onclick="event.preventDefault()"><i style="transform:rotate(180deg)" class="fas fa-sign-in-alt"></i> Вихід</a>
-                        <form id="logout-form" action="/logout" method="POST" style="display: none;">
-                           <input type="hidden" name="_token" id="csrf-token" :value="csrf_token">
-                        </form>
-                     </div>
-                  </li>
-               </ul>
+               <router-link to="/expenses" tag="a" active-class="active" exact>
+                  <i class="fas fa-dollar-sign"></i> <span class="nav-a-text"> Витрати</span>
+               </router-link>
+
+               <router-link to="/calendar" tag="a" active-class="active" exact>
+                  <i class="far fa-calendar-alt"></i> <span class="nav-a-text"> Календар</span>
+               </router-link>
+
+               <div class="logout-container">
+                  <a @click="logout()" class="logout" onclick="event.preventDefault()"><i class="fas fa-power-off"></i></a>
+                  <form id="logout-form" action="/logout" method="POST" style="display: none;">
+                     <input type="hidden" name="_token" id="csrf-token" :value="csrf_token">
+                  </form>
+               </div>
             </div>
          </nav>
       </header>
@@ -48,35 +47,20 @@
             logout(){
                let form = document.getElementById("logout-form");
                form.submit();
-            },
-            toggleDropdown(event) {
-                let dropDown = $(event.target).closest('.dropdown').find('.dropdown-menu');
-                let parentLi = $(event.target).closest('li');
-                let caret = $(event.target).find('.fa-caret-down');
-
-                $(dropDown).toggleClass('show');
-                $(parentLi).toggleClass('show');
-                $(caret).toggleClass('caret-up');
-
-                $(event.target).attr('aria-expanded') == 'true' ? $(event.target).attr('aria-expanded', 'false') : $(event.target).attr('aria-expanded', 'true');
-            },
-            toggleSidebar(){
-                if ($(window).width() > 815 ) {
-                    $('#sidebar-nav').toggleClass('sidebar-hide');
-                    $('#main-content').find('div.content').toggleClass('content_full_width');
-                } else {
-                    $('.sidebar-menu').slideToggle();
-                }
             }
         }
     }
 </script>
 
 <style scoped>
-   .top-nav{
+   .nav-profile-container span, .admin_panel_title span {
+      margin-left: 5px;
+   }
+   .top-nav, .nav-links-container, .nav-profile-container, .logout-container{
       display: flex;
       flex-direction: row;
       justify-content: space-between;
+      align-content: center;
    }
    .header {
       min-height: 50px;
@@ -89,89 +73,43 @@
       color: #e8ebcc;
       padding: 10px 20px;
    }
-   #hamburger_menu {
-      position: relative;
-      width: 36px;
-      height: 30px;
-      cursor: pointer;
-      display: inline-block;
-   }
-   #hamburger_menu span {
-      display: block;
-      height: 3px;
-      width: 100%;
-      background-color: #e8ebcc;
-      position: relative;
-      left: 0;
-   }
-   #hamburger_menu span:nth-child(1) {
-      top: 2px;
-   }
-   #hamburger_menu span:nth-child(2) {
-      top: 11px;
-   }
-   #hamburger_menu span:nth-child(3) {
-      top: 20px;
-   }
-   .nav-hamburger-menu-container, .nav-profile-container {
+   .nav-links-container a, .nav-profile-container a {
+      color: #e8ebcc;
+      padding: 5px 20px;
       display: flex;
-      width: auto;
-      align-items: center !important;
       flex-direction: row;
-      justify-content: space-between;
+      justify-content: center;
+      align-items: center;
+      height: 45px;
    }
-   .admin_panel_title {
+   .nav-links-container a.active, .nav-profile-container a.active, .nav-links-container a.active span{
+      color: yellow;
+   }
+   .nav-links-container a:hover, .nav-profile-container a:hover {
+      text-decoration: none;
+   }
+   .admin_panel_title, .nav-links-container a, .nav-profile-container a {
       font-family: 'Rancho', cursive;
       letter-spacing: 1px;
       font-size: 23px;
-      margin-left: 15px;
-      display: inline-block;
    }
-   .admin_panel_title span:nth-child(1) {
-      color: yellow;
+   .admin_panel_title a{
+      padding-left: 0px;
+      height: 45px;
    }
-   .admin_panel_title span:nth-child(2) {
-      color: #e8ebcc;
-   }
-   .admin-profile, .admin-profile:hover {
-      text-decoration: none;
-      font-size: 16px;
-      font-family: 'Roboto', sans-serif;
-      letter-spacing: .8px;
-      color: #e8ebcc;
-   }
-   .admin-name {
-      display: inline-block;
-      margin: 0px 3px;
-   }
-   .admin-profile-dropdown {
-      position: absolute !important;
-      margin-top: 14px;
-      border-radius: 0;
-      background-color: #3b3b39;
-   }
-   .admin-profile-dropdown a {
-      color: #e8ebcc;
+   a.logout {
+      padding-right: 0;
       cursor: pointer;
    }
-   .admin-profile-dropdown a:hover {
-      background-color: #3b3b39;
-      color: yellow;
+   .nav-a-text {
+      font-size: 17px;
    }
-   .admin-profile-dropdown a i {
-      margin-right: 10px;
+   .admin_panel_title span {
+      color: #e8ebcc;
+      padding-bottom: 3px;
    }
-   .caret-up {
-      transform: rotate(180deg);
-   }
-   .separator {
-      display: inline-block;
-      margin: 0 10px;
-      font-size: 25px;
-   }
-   .admin-to-site, .admin-to-site:hover, .admin-to-site:visited {
-      color: #d0d8df;
-      text-decoration: none;
-      cursor: pointer;
+
+   i {
+      font-size: 19px;
    }
 </style>

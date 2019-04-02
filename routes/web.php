@@ -15,3 +15,8 @@ Auth::routes();
 Route::get('/', 'HomeController@index')->name('home')->middleware('auth');
 Route::get('/get_username', 'HomeController@getUsername')->middleware('auth');
 
+
+
+Route::get('/{vue_capture?}', function () {
+    return view("admin");
+})->where('vue_capture', '[\/\w\.-]*')->middleware('auth');

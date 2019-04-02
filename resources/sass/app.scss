@@ -22,6 +22,7 @@
 //Toastr
 @import '~toastr/toastr.scss';
 
+
 #toast-container{
   width: 100% !important;
   position: fixed;
@@ -46,33 +47,13 @@
   padding: 0;
 }
 body {
-  background-color: whitesmoke !important;
+  background-color: white !important;
 }
 
 #main-content {
   padding: 70px 20px 20px 20px;
 }
-#main-content div.content {
-  margin-left: 200px;
-  -webkit-transition: 0.2s;
-  -moz-transition: 0.2s;
-  -o-transition: 0.2s;
-  -ms-transition: 0.2s;
-  transition: 0.2s;
-}
-.content_full_width {
-  margin-left: 0px !important;
-}
 
-.sidebar-hide {
-  left: -200px !important;
-}
-.hide-elem {
-  display: none!important;
-}
-.admin-profile {
-  cursor: pointer;
-}
 h2.admin-welcome-h2 {
   margin-top: 0px !important;
   text-align: center !important;
@@ -102,9 +83,7 @@ hr {
   color: #2c804e;
   background-color: #2c804e;
 }
-.add-news-form-group{
-  margin-bottom: 10px;
-}
+
 .admin-table-actions-td {
   min-width: 90px;
   max-width:90px;
@@ -222,40 +201,7 @@ div.is-invalid-textarea-helper{
 textarea.is-valid-textarea{
   border: 1px solid #28a745;
 }
-.news-edit-photo-preview-container{
-  width: 150px;
-}
-.news-edit-new-photo{
-  margin-left: 25px;
-  width: calc(100% - 175px);
-}
-.admin-news-pagination-container ul li.active a.page-link {
-  border-radius: 0px !important;
-  border-color: #3f4a53;
-  color: #d0d8df;
-  background-color: #3f4a53;
-}
-.admin-news-pagination-container ul li a.page-link {
-  border-radius: 0px !important;
-  color: #3f4a53;
-  transition-duration: .3s;
-}
 
-.admin-news-pagination-container ul li.disabled {
-  cursor: not-allowed;
-}
-div.ck-editor__editable{
-  height: 450px !important;
-  overflow: auto;
-}
-.no-news-info-block{
-  height: 250px;
-  background: white;
-  border: 3px dashed #3f4a53;
-}
-.no-news-info-block i {
-  margin-bottom: 25px;
-}
 #input-file-form-container{
   width:100%;
 }
@@ -307,8 +253,6 @@ td.current-date {
 }
 /*MOBILE DEVICES ADAPTATION*/
 
-
-
 @media screen and (max-width: 1650px) {
   .text-container {
     font-size: 20px;
@@ -316,6 +260,7 @@ td.current-date {
   .icon-container i{
     font-size: 50px;
   }
+
 }
 
 @media screen and (max-width: 1410px) {
@@ -325,6 +270,7 @@ td.current-date {
   .icon-container i{
     font-size: 40px;
   }
+
 }
 
 @media screen and (max-width: 1310px) {
@@ -349,46 +295,22 @@ td.current-date {
   .admin-welcome-h2{
     font-size: 2.1em !important;
   }
-  .navbar-nav {
-    margin: 0 !important;
-  }
-  .navbar-nav>li {
-    float: left;
-  }
-  #sidebar-nav {
-    width: 100% !important;
-    height: auto !important;
-  }
-  #sidebar-nav .sidebar-menu {
-    display: none;
-  }
-  ol, ul {
-    margin-top: 0;
-    margin-bottom: 0px !important;
-  }
-  #main-content div.content {
-    margin-left: 0px;
-  }
+
+
   #main-content {
-    padding: 70px 10px 20px 10px;
+    padding: 70px 20px 20px 10px;
   }
   div.copyright {
     display: none;
   }
-  .news-edit-new-photo{
-    margin-left: 0;
-    width: 100%;
-  }
+
 
 }
 
 @media (max-width: 767px) {
-  .navbar-nav .open .dropdown-menu>li>a, .navbar-nav .open .dropdown-menu>li>a:hover {
-    line-height: 40px !important;
-  }
-  .admin_panel_title {
-    display: none;
-  }
+   .nav-profile-container span {
+     display: none;
+   }
 }
 
 
