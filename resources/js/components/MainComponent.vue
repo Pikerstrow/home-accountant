@@ -23,6 +23,7 @@
         },
         mounted(){
             this.$store.dispatch('getUserName');
+            this.$store.dispatch('getAllCostItems');
         }
     }
 </script>

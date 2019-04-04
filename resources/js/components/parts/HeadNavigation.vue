@@ -16,6 +16,10 @@
                   <i class="fas fa-dollar-sign"></i> <span class="nav-a-text"> Витрати</span>
                </router-link>
 
+               <router-link to="/cost-items" tag="a" active-class="active" exact>
+                  <i class="fas fa-file-invoice-dollar"></i> <span class="nav-a-text"> Статті витрат</span>
+               </router-link>
+
                <router-link to="/calendar" tag="a" active-class="active" exact>
                   <i class="far fa-calendar-alt"></i> <span class="nav-a-text"> Календар</span>
                </router-link>

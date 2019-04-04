@@ -7,7 +7,7 @@
             </h2>
             <hr>
             <div class="row">
-               <div @click="checkModal" class="col-12 text-left add-expense">
+               <div @click="toggleModal" class="col-12 text-left add-expense">
                   <span>+</span>
                </div>
             </div>
@@ -85,8 +85,8 @@
                <date-piker id="date" v-model="date" :options="options"></date-piker>
             </div>
             <div class="form-group">
-               <label for="category">Категорія</label>
-               <select class="form-control" id="category">
+               <label for="category">Стаття</label>
+               <select class="form-control" id="cost_item">
                   <option>Автомобіль</option>
                   <option>Ліки</option>
                   <option>Продукти</option>
@@ -102,7 +102,7 @@
             <hr class="button-separator">
             <div class="form-group d-flex justify-content-between mt-4">
                <button class="col-4 btn btn-success">Додати</button>
-               <button @click="checkModal" class="col-4 btn btn-danger">Відмінити</button>
+               <button @click="toggleModal" class="col-4 btn btn-danger">Відмінити</button>
             </div>
          </div>
 
@@ -119,7 +119,7 @@
         data() {
             return {
                 date: '',
-                category: '',
+                cost_item: '',
                 sum: '',
                 options: {
                     locale: 'UK-ua',
@@ -129,7 +129,7 @@
             }
         },
         methods: {
-            checkModal(){
+            toggleModal(){
                 let modal = this.$refs.modalwrapper;
                 if (modal.style.display == 'none' || ! modal.style.display) {
                     modal.style.display = 'flex'
@@ -147,7 +147,6 @@
 <style scoped>
    #modal-wrapper {
       display: none;
-      /*display: block;*/
       position: fixed;
       z-index: 1000;
       left: 0;

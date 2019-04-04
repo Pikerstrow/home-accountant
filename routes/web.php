@@ -12,11 +12,15 @@
 */
 Auth::routes();
 
-Route::get('/', 'HomeController@index')->name('home')->middleware('auth');
-Route::get('/get_username', 'HomeController@getUsername')->middleware('auth');
+Route::middleware('auth')->group(function () {
+    Route::get('/', 'HomeController@index')->name('home');
+    Route::get('/get-username', 'HomeController@getUsername');
+    Route::get('/get-all-cost-items', 'CostItemsController@getCostItems');
+    Route::post('/add-cost-item', 'CostItemsController@createCostItem');
+});
 
 
-
+// vue router
 Route::get('/{vue_capture?}', function () {
     return view("admin");
 })->where('vue_capture', '[\/\w\.-]*')->middleware('auth');
