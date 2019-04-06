@@ -10,7 +10,7 @@
 
       <div :id="'ind' + index" class="collapse" :class="{'show': index == 0}" aria-labelledby="headingOne" data-parent="#accordion">
          <div class="card-body">
-            <div v-if="direction.cost_items.length > 0" class="row">
+            <div v-if="direction.cost_items && direction.cost_items.length > 0" class="row">
                <div class="col-12 col-md-8 col-lg-6">
                   <h6 class="text-left">Елементи витрат</h6>
                   <ul class="list-group">

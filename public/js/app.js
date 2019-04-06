@@ -1846,11 +1846,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       title: '',
+      hasCostItems: '',
       errors: {}
     };
   },
@@ -1875,7 +1881,8 @@ __webpack_require__.r(__webpack_exports__);
       this.$refs.addCostDirectionButton.setAttribute('disabled', true);
       this.$refs.preloader.style.display = 'flex';
       axios.post('/add-cost-direction', {
-        'title': this.title
+        'title': this.title,
+        'has_cost_items': this.hasCostItems
       }).then(function (response) {
         setTimeout(function () {
           _this.$store.commit('addCostDirection', response.data.costDirection);
@@ -39745,6 +39752,60 @@ var render = function() {
               _vm._m(0)
             ]),
             _vm._v(" "),
+            _c("div", { staticClass: "form-check" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.hasCostItems,
+                    expression: "hasCostItems"
+                  }
+                ],
+                staticClass: "form-check-input",
+                class: { "is-invalid": _vm.errors.has_cost_items },
+                attrs: { type: "checkbox", id: "hasElems" },
+                domProps: {
+                  checked: Array.isArray(_vm.hasCostItems)
+                    ? _vm._i(_vm.hasCostItems, null) > -1
+                    : _vm.hasCostItems
+                },
+                on: {
+                  change: function($event) {
+                    var $$a = _vm.hasCostItems,
+                      $$el = $event.target,
+                      $$c = $$el.checked ? true : false
+                    if (Array.isArray($$a)) {
+                      var $$v = null,
+                        $$i = _vm._i($$a, $$v)
+                      if ($$el.checked) {
+                        $$i < 0 && (_vm.hasCostItems = $$a.concat([$$v]))
+                      } else {
+                        $$i > -1 &&
+                          (_vm.hasCostItems = $$a
+                            .slice(0, $$i)
+                            .concat($$a.slice($$i + 1)))
+                      }
+                    } else {
+                      _vm.hasCostItems = $$c
+                    }
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _vm.errors.has_cost_items
+                ? _c("div", { staticClass: "invalid-feedback" }, [
+                    _vm._v(_vm._s(_vm.errors.has_cost_items))
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _c(
+                "label",
+                { staticClass: "form-check-label", attrs: { for: "hasElems" } },
+                [_vm._v("Містить елементи")]
+              )
+            ]),
+            _vm._v(" "),
             _c("hr", { staticClass: "button-separator" }),
             _vm._v(" "),
             _c(
@@ -40185,7 +40246,7 @@ var render = function() {
       },
       [
         _c("div", { staticClass: "card-body" }, [
-          _vm.direction.cost_items.length > 0
+          _vm.direction.cost_items && _vm.direction.cost_items.length > 0
             ? _c("div", { staticClass: "row" }, [
                 _c("div", { staticClass: "col-12 col-md-8 col-lg-6" }, [
                   _c("h6", { staticClass: "text-left" }, [

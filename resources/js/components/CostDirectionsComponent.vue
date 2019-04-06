@@ -36,6 +36,11 @@
                <div v-if="errors.title" class="invalid-feedback">{{ errors.title }}</div>
                <small><b>Увага!</b> Приймаються лише значення введені кирилицею.</small>
             </div>
+            <div class="form-check">
+               <input v-model="hasCostItems" :class="{'is-invalid': errors.has_cost_items}" type="checkbox" class="form-check-input" id="hasElems">
+               <div v-if="errors.has_cost_items" class="invalid-feedback">{{ errors.has_cost_items }}</div>
+               <label class="form-check-label" for="hasElems">Містить елементи</label>
+            </div>
             <hr class="button-separator">
             <div class="form-group d-flex justify-content-between mt-4">
                <button ref="addCostDirectionButton" @click="addCostDirection" class="col-4 btn btn-success add-cost-item-but">
@@ -60,6 +65,7 @@
         data() {
             return {
                 title: '',
+                hasCostItems: '',
                 errors: {}
             }
         },
@@ -83,7 +89,7 @@
 
                 axios.post(
                     '/add-cost-direction',
-                    {'title': this.title}
+                    {'title': this.title, 'has_cost_items': this.hasCostItems}
                 ).then(response => {
 
                     setTimeout(() => {

@@ -10,7 +10,9 @@ class CostDirection extends Model
 
     protected $fillable = [
         'user_id',
-        'title'
+        'title',
+        'has_cost_items',
+        'sum'
     ];
 
     public function user()

@@ -22,12 +22,15 @@ class CostDirectionsController extends Controller
 
     public function createCostDirection(Request $request)
     {
-        $validated = $request->validate(['title' => 'required|min:3|max:30|cyrillic']);
+        $validated = $request->validate([
+            'title' => 'required|min:3|max:30|cyrillic',
+            'has_cost_items' => 'required|boolean'
+        ]);
         $costDirection = $request->user()->costDirections()->create($validated);
 
         return response()->json([
             'costDirection' => $costDirection,
-            'message' => 'Новий напрямок витрат успішно доданий!'
+            'message' => 'Стаття витрат успішно доданий!'
         ], 200);
     }
 }
