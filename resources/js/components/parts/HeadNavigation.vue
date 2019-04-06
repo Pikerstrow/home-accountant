@@ -17,7 +17,7 @@
                </router-link>
 
                <router-link to="/cost-directions" tag="a" active-class="active" exact>
-                  <i class="fas fa-file-invoice-dollar"></i> <span class="nav-a-text"> Напрямки та статті витрат</span>
+                  <i class="fas fa-file-invoice-dollar"></i> <span class="nav-a-text"> Статті витрат</span>
                </router-link>
 
                <router-link to="/calendar" tag="a" active-class="active" exact>

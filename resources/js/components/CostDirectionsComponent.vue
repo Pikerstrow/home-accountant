@@ -3,7 +3,7 @@
       <div class="row">
          <div class="col-12">
             <h2 class="admin-welcome-h2 text-center">
-               Напрямки та статті витрат
+               Статті витрат
             </h2>
             <hr>
             <div class="row d-flex justify-content-center">
@@ -26,7 +26,7 @@
       <div ref="modalwrapper" id="modal-wrapper" class="modal justify-content-center align-items-center">
          <div class="animate col-12 col-sm-8 col-md-6 col-lg-4 col-xl-3 add-cost-direction-form-container">
             <h2 class="admin-welcome-h2 text-center">
-               Додати напрямок витрат
+               Додати статтю витрат
             </h2>
             <hr>
             <div class="form-group mb-3 mt-3">

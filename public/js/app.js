@@ -2186,17 +2186,56 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "AccordionCard",
   props: ['direction', 'index'],
   data: function data() {
     return {
       title: '',
-      errors: {}
+      errors: {},
+      isInputActive: false
     };
   },
   methods: {
-    addCostItem: function addCostItem() {}
+    addCostItem: function addCostItem() {
+      this.$refs.addCostItemBtn.setAttribute('disabled', true);
+      this.$refs.addCostItemInput.setAttribute('disabled', true); // axios.post(
+      //     '/add-cost-direction',
+      //     {'title': this.title}
+      // ).then(response => {
+      //
+      //     setTimeout(() => {
+      //         this.$store.commit('addCostDirection', response.data.costDirection);
+      //         this.resetData();
+      //
+      //         this.$refs.addCostDirectionButton.removeAttribute('disabled');
+      //         this.$refs.preloader.style.display = 'none';
+      //         this.toggleModal();
+      //     }, 500);
+      //
+      //     /*notification with toastr*/
+      //
+      // }).catch(error => {
+      //
+      //     setTimeout(() => {
+      //         if (error.response.data.errors.title) {
+      //             this.$set(this.errors, 'title', error.response.data.errors.title[0]);
+      //         }
+      //         this.$refs.addCostDirectionButton.removeAttribute('disabled');
+      //         this.$refs.preloader.style.display = 'none';
+      //     }, 500);
+      // });
+    },
+    showAddCostItemInput: function showAddCostItemInput() {}
   }
 });
 
@@ -6882,7 +6921,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.card[data-v-6a7540ee] {\n   border-radius: unset !important;\n}\n.card-header[data-v-6a7540ee] {\n   padding: 0.1rem 0.5rem;\n}\n.card-header h5[data-v-6a7540ee] {\n   font-family: 'Poiret One', cursive;\n   font-weight: bold;\n}\n.card-header .btn-link[data-v-6a7540ee], .card-header .btn[data-v-6a7540ee] {\n   text-decoration: none;\n   color: black;\n   cursor: pointer;\n   font-size: 18px;\n   font-weight: bold;\n   width: 100%;\n   text-align: left;\n}\n.card-body[data-v-6a7540ee]{\n   position: relative;\n}\n#modal-wrapper[data-v-6a7540ee] {\n   display: none;\n   position: fixed;\n   z-index: 1000;\n   left: 0;\n   top: 0;\n   width: 100%;\n   height: 100%;\n   overflow: auto;\n   background-color: rgba(0, 0, 0, 0.6)\n}\n.preloader-container[data-v-6a7540ee] {\n   display: none;\n   position: absolute;\n   z-index: 1000;\n   left: 0;\n   top: 0;\n   width: 100%;\n   height: 100%;\n   overflow: auto;\n   background-color: rgba(255, 255, 255, 0.6)\n}\n.add-cost-item-form-container[data-v-6a7540ee] {\n   background-color: white;\n   padding: 25px 20px;\n   position: relative;\n}\n.add-cost-item-form-container .input-group-text[data-v-6a7540ee] {\n   background-color: #2c804e;\n   color: white;\n   padding: 0.20rem 0.75rem;\n   cursor: pointer;\n   border: 1px solid #ced4da;\n   line-height: 1.6;\n}\nhr.button-separator[data-v-6a7540ee] {\n   background-color: whitesmoke;\n}\n.add-cost-item[data-v-6a7540ee]{\n   position: absolute;\n   bottom: 10px;\n   right: 10px;\n}\n.add-cost-item span[data-v-6a7540ee] {\n   background-color: #2c804e;\n   color: #e8ebcc;\n   cursor: pointer;\n   font-size: 50px;\n   margin-top: 15px;\n   margin-bottom: 20px;\n   border-radius: 50%;\n   width: 50px;\n   height: 50px;\n   display: flex;\n   flex-direction: row;\n   justify-content: center;\n   align-items: center;\n   box-shadow: 1px 1px 31px -8px rgba(0, 0, 0, 1);\n   transition-duration: .3s;\n}\n.add-cost-item span[data-v-6a7540ee]:hover {\n   background-color: #246339;\n   color: #ebe14f;\n}\n.add-cost-item-but[data-v-6a7540ee]:disabled {\n   cursor: not-allowed;\n}\n.edit-i[data-v-6a7540ee] {\n   cursor: pointer;\n   color: royalblue;\n   margin: 4px;\n}\n.delete-i[data-v-6a7540ee] {\n   cursor: pointer;\n   color: darkred;\n   margin: 4px;\n}\n.animate[data-v-6a7540ee] {\n   -webkit-animation: zoom-data-v-6a7540ee .7s;\n           animation: zoom-data-v-6a7540ee .7s\n}\n@-webkit-keyframes zoom-data-v-6a7540ee {\nfrom {\n      -webkit-transform: scale(0);\n              transform: scale(0)\n}\nto {\n      -webkit-transform: scale(1);\n              transform: scale(1)\n}\n}\n@keyframes zoom-data-v-6a7540ee {\nfrom {\n      -webkit-transform: scale(0);\n              transform: scale(0)\n}\nto {\n      -webkit-transform: scale(1);\n              transform: scale(1)\n}\n}\n", ""]);
+exports.push([module.i, "\n.input-group-text[data-v-6a7540ee]:disabled{\n   cursor: not-allowed;\n}\n.add-cost-item-li[data-v-6a7540ee]{\n   cursor: pointer;\n}\n.card[data-v-6a7540ee] {\n   border-radius: unset !important;\n}\n.card-header[data-v-6a7540ee] {\n   padding: 0.1rem 0.5rem;\n}\n.card-header h5[data-v-6a7540ee] {\n   font-family: 'Poiret One', cursive;\n   font-weight: bold;\n}\n.card-header .btn-link[data-v-6a7540ee], .card-header .btn[data-v-6a7540ee] {\n   text-decoration: none;\n   color: black;\n   cursor: pointer;\n   font-size: 18px;\n   font-weight: bold;\n   width: 100%;\n   text-align: left;\n}\n.card-body[data-v-6a7540ee]{\n   position: relative;\n}\n#modal-wrapper[data-v-6a7540ee] {\n   display: none;\n   position: fixed;\n   z-index: 1000;\n   left: 0;\n   top: 0;\n   width: 100%;\n   height: 100%;\n   overflow: auto;\n   background-color: rgba(0, 0, 0, 0.6)\n}\n.preloader-container[data-v-6a7540ee] {\n   display: none;\n   position: absolute;\n   z-index: 1000;\n   left: 0;\n   top: 0;\n   width: 100%;\n   height: 100%;\n   overflow: auto;\n   background-color: rgba(255, 255, 255, 0.6)\n}\n.add-cost-item-form-container[data-v-6a7540ee] {\n   background-color: white;\n   padding: 25px 20px;\n   position: relative;\n}\n.add-cost-item-form-container .input-group-text[data-v-6a7540ee] {\n   background-color: #2c804e;\n   color: white;\n   padding: 0.20rem 0.75rem;\n   cursor: pointer;\n   border: 1px solid #ced4da;\n   line-height: 1.6;\n}\nhr.button-separator[data-v-6a7540ee] {\n   background-color: whitesmoke;\n}\n.add-cost-item[data-v-6a7540ee]{\n   position: absolute;\n   bottom: 10px;\n   right: 10px;\n}\n.add-cost-item span[data-v-6a7540ee] {\n   background-color: #2c804e;\n   color: #e8ebcc;\n   cursor: pointer;\n   font-size: 50px;\n   margin-top: 15px;\n   margin-bottom: 20px;\n   border-radius: 50%;\n   width: 50px;\n   height: 50px;\n   display: flex;\n   flex-direction: row;\n   justify-content: center;\n   align-items: center;\n   box-shadow: 1px 1px 31px -8px rgba(0, 0, 0, 1);\n   transition-duration: .3s;\n}\n.add-cost-item span[data-v-6a7540ee]:hover {\n   background-color: #246339;\n   color: #ebe14f;\n}\n.add-cost-item-but[data-v-6a7540ee]:disabled {\n   cursor: not-allowed;\n}\n.edit-i[data-v-6a7540ee] {\n   cursor: pointer;\n   color: royalblue;\n   margin: 4px;\n}\n.delete-i[data-v-6a7540ee] {\n   cursor: pointer;\n   color: darkred;\n   margin: 4px;\n}\n.animate[data-v-6a7540ee] {\n   -webkit-animation: zoom-data-v-6a7540ee .7s;\n           animation: zoom-data-v-6a7540ee .7s\n}\n@-webkit-keyframes zoom-data-v-6a7540ee {\nfrom {\n      -webkit-transform: scale(0);\n              transform: scale(0)\n}\nto {\n      -webkit-transform: scale(1);\n              transform: scale(1)\n}\n}\n@keyframes zoom-data-v-6a7540ee {\nfrom {\n      -webkit-transform: scale(0);\n              transform: scale(0)\n}\nto {\n      -webkit-transform: scale(1);\n              transform: scale(1)\n}\n}\n", ""]);
 
 // exports
 
@@ -39609,7 +39648,7 @@ var render = function() {
     _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col-12" }, [
         _c("h2", { staticClass: "admin-welcome-h2 text-center" }, [
-          _vm._v("\n            Напрямки та статті витрат\n         ")
+          _vm._v("\n            Статті витрат\n         ")
         ]),
         _vm._v(" "),
         _c("hr"),
@@ -39660,7 +39699,7 @@ var render = function() {
           },
           [
             _c("h2", { staticClass: "admin-welcome-h2 text-center" }, [
-              _vm._v("\n            Додати напрямок витрат\n         ")
+              _vm._v("\n            Додати статтю витрат\n         ")
             ]),
             _vm._v(" "),
             _c("hr"),
@@ -40148,28 +40187,96 @@ var render = function() {
         _c("div", { staticClass: "card-body" }, [
           _vm.direction.cost_items.length > 0
             ? _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col-12" }, [
+                _c("div", { staticClass: "col-12 col-md-8 col-lg-6" }, [
+                  _c("h6", { staticClass: "text-left" }, [
+                    _vm._v("Елементи витрат")
+                  ]),
+                  _vm._v(" "),
                   _c(
                     "ul",
                     { staticClass: "list-group" },
-                    _vm._l(_vm.direction.cost_items, function(costItem, ind) {
-                      return _c(
+                    [
+                      _c(
                         "li",
                         {
                           staticClass:
-                            "list-group-item d-flex justify-content-between align-items-center"
+                            "add-cost-item-li list-group-item d-flex justify-content-between align-items-center"
                         },
                         [
-                          _vm._v(
-                            "\n                     " +
-                              _vm._s(costItem.title) +
-                              "\n                     "
-                          ),
-                          _vm._m(0, true)
+                          _vm.isInputActive
+                            ? _c("div", { staticClass: "input-group" }, [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.title,
+                                      expression: "title"
+                                    }
+                                  ],
+                                  ref: "addCostItemInput",
+                                  staticClass: "form-control",
+                                  attrs: { type: "text" },
+                                  domProps: { value: _vm.title },
+                                  on: {
+                                    input: function($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.title = $event.target.value
+                                    }
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  { staticClass: "input-group-append" },
+                                  [
+                                    _c(
+                                      "button",
+                                      {
+                                        ref: "addCostItemBtn",
+                                        staticClass: "input-group-text",
+                                        on: { click: _vm.addCostItem }
+                                      },
+                                      [_vm._v("+")]
+                                    )
+                                  ]
+                                )
+                              ])
+                            : _c(
+                                "span",
+                                {
+                                  on: {
+                                    click: function($event) {
+                                      _vm.isInputActive = true
+                                    }
+                                  }
+                                },
+                                [_vm._v("+ додати елемент")]
+                              )
                         ]
-                      )
-                    }),
-                    0
+                      ),
+                      _vm._v(" "),
+                      _vm._l(_vm.direction.cost_items, function(costItem, ind) {
+                        return _c(
+                          "li",
+                          {
+                            staticClass:
+                              "list-group-item d-flex justify-content-between align-items-center"
+                          },
+                          [
+                            _vm._v(
+                              "\n                     " +
+                                _vm._s(costItem.title) +
+                                "\n                     "
+                            ),
+                            _vm._m(0, true)
+                          ]
+                        )
+                      })
+                    ],
+                    2
                   )
                 ])
               ])
@@ -40326,7 +40433,7 @@ var render = function() {
                 _c("i", { staticClass: "fas fa-file-invoice-dollar" }),
                 _vm._v(" "),
                 _c("span", { staticClass: "nav-a-text" }, [
-                  _vm._v(" Напрямки та статті витрат")
+                  _vm._v(" Статті витрат")
                 ])
               ]
             ),

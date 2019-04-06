@@ -11,14 +11,23 @@
       <div :id="'ind' + index" class="collapse" :class="{'show': index == 0}" aria-labelledby="headingOne" data-parent="#accordion">
          <div class="card-body">
             <div v-if="direction.cost_items.length > 0" class="row">
-               <div class="col-12">
+               <div class="col-12 col-md-8 col-lg-6">
+                  <h6 class="text-left">Елементи витрат</h6>
                   <ul class="list-group">
+                     <li class="add-cost-item-li list-group-item d-flex justify-content-between align-items-center">
+
+                        <div v-if="isInputActive" class="input-group">
+                           <input ref="addCostItemInput" type="text" v-model="title" class="form-control">
+                           <div class="input-group-append">
+                              <button ref="addCostItemBtn"  @click="addCostItem" class="input-group-text">+</button>
+                           </div>
+                        </div>
+                        <span v-else @click="isInputActive = true">+ додати елемент</span>
+                     </li>
                      <li v-for="(costItem, ind) in direction.cost_items" class="list-group-item d-flex justify-content-between align-items-center">
                         {{ costItem.title }}
                         <div>
                            <i class="edit-i fas fa-pencil-alt"></i>
-                           <!--</router-link>-->
-
                            <a title="Видалити"><i class="delete-i fas fa-times"></i></a>
                         </div>
                      </li>
@@ -44,11 +53,43 @@
         data(){
             return {
                 title: '',
-                errors: {}
+                errors: {},
+                isInputActive: false
             }
         },
         methods: {
             addCostItem(){
+                this.$refs.addCostItemBtn.setAttribute('disabled', true);
+                this.$refs.addCostItemInput.setAttribute('disabled', true);
+
+                // axios.post(
+                //     '/add-cost-direction',
+                //     {'title': this.title}
+                // ).then(response => {
+                //
+                //     setTimeout(() => {
+                //         this.$store.commit('addCostDirection', response.data.costDirection);
+                //         this.resetData();
+                //
+                //         this.$refs.addCostDirectionButton.removeAttribute('disabled');
+                //         this.$refs.preloader.style.display = 'none';
+                //         this.toggleModal();
+                //     }, 500);
+                //
+                //     /*notification with toastr*/
+                //
+                // }).catch(error => {
+                //
+                //     setTimeout(() => {
+                //         if (error.response.data.errors.title) {
+                //             this.$set(this.errors, 'title', error.response.data.errors.title[0]);
+                //         }
+                //         this.$refs.addCostDirectionButton.removeAttribute('disabled');
+                //         this.$refs.preloader.style.display = 'none';
+                //     }, 500);
+                // });
+            },
+            showAddCostItemInput(){
 
             }
         }
@@ -56,6 +97,12 @@
 </script>
 
 <style scoped>
+   .input-group-text:disabled{
+      cursor: not-allowed;
+   }
+   .add-cost-item-li{
+      cursor: pointer;
+   }
    .card {
       border-radius: unset !important;
    }
