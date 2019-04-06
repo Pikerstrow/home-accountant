@@ -3,48 +3,19 @@
       <div class="row">
          <div class="col-12">
             <h2 class="admin-welcome-h2 text-center">
-               Статті витрат
+               Напрямки та статті витрат
             </h2>
             <hr>
             <div class="row d-flex justify-content-center">
                <div class="col-12 col-md-8 col-xl-6">
                   <div class="row">
-                     <div title="Додати статтю витрат" @click="toggleModal" class="col-12 text-left add-cost-item">
+                     <div title="Додати статтю витрат" @click="toggleModal" class="col-12 text-left add-cost-direction">
                         <span>+</span>
                      </div>
                   </div>
-                  <!--<ul class="list-group cost-items-ul">-->
-                  <!--<li v-for="(item, index) in costItems" :key="index"-->
-                  <!--class="list-group-item d-flex justify-content-between align-items-center">-->
-                  <!--{{ item.title }}-->
-                  <!--<div class="actions">-->
-                  <!--<i class="edit-i fas fa-pencil-alt"></i>-->
-                  <!--<a title="Видалити"><i class="delete-i fas fa-times"></i></a>-->
-                  <!--</div>-->
-                  <!--</li>-->
-                  <!--</ul>-->
-
                   <div id="accordion">
-                     <accordion-card v-for="(item, index) in costItems" :key="index" :item="item" :index="index"></accordion-card>
-                     <!--<div class="card">-->
-                     <!--<div class="card-header" id="headingOne">-->
-                     <!--<h5 class="mb-0">-->
-                     <!--<button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">-->
-                     <!--Collapsible Group Item #1-->
-                     <!--</button>-->
-                     <!--</h5>-->
-                     <!--</div>-->
-
-                     <!--<div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">-->
-                     <!--<div class="card-body">-->
-                     <!--Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.-->
-                     <!--</div>-->
-                     <!--</div>-->
-                     <!--</div>                     -->
-
+                     <accordion-card v-for="(direction, index) in costDirections" :key="index" :direction="direction" :index="index"></accordion-card>
                   </div>
-
-
                </div>
             </div>
          </div>
@@ -53,22 +24,22 @@
 
       <!-- modal -->
       <div ref="modalwrapper" id="modal-wrapper" class="modal justify-content-center align-items-center">
-         <div class="animate col-12 col-sm-8 col-md-6 col-lg-4 col-xl-3 add-cost-item-form-container">
+         <div class="animate col-12 col-sm-8 col-md-6 col-lg-4 col-xl-3 add-cost-direction-form-container">
             <h2 class="admin-welcome-h2 text-center">
-               Додати статтю витрат
+               Додати напрямок витрат
             </h2>
             <hr>
             <div class="form-group mb-3 mt-3">
                <input v-model="title" @focus="errors.title ? errors.title = '' : ''" type="text" id="title" name="title"
                       :class="{'is-invalid': errors.title}" class="form-control"
-                      placeholder="Назва статті витрат">
+                      placeholder="Назва напрямку витрат">
                <div v-if="errors.title" class="invalid-feedback">{{ errors.title }}</div>
                <small><b>Увага!</b> Приймаються лише значення введені кирилицею.</small>
             </div>
             <hr class="button-separator">
             <div class="form-group d-flex justify-content-between mt-4">
-               <button ref="addCostItemButton" @click="addCostItem" class="col-4 btn btn-success add-cost-item-but">
-                  Додати
+               <button ref="addCostDirectionButton" @click="addCostDirection" class="col-4 btn btn-success add-cost-item-but">
+               Додати
                </button>
                <button @click="toggleModal" class="col-4 btn btn-danger">Відмінити</button>
             </div>
@@ -93,8 +64,8 @@
             }
         },
         computed: {
-            costItems() {
-                return this.$store.getters.costItems;
+            costDirections() {
+                return this.$store.getters.costDirections;
             }
         },
         methods: {
@@ -106,25 +77,25 @@
                     modal.style.display = 'none';
                 }
             },
-            addCostItem() {
-                this.$refs.addCostItemButton.setAttribute('disabled', true);
+            addCostDirection() {
+                this.$refs.addCostDirectionButton.setAttribute('disabled', true);
                 this.$refs.preloader.style.display = 'flex';
 
                 axios.post(
-                    '/add-cost-item',
+                    '/add-cost-direction',
                     {'title': this.title}
                 ).then(response => {
 
                     setTimeout(() => {
-                        this.$store.commit('addCostItem', response.data.costItem);
+                        this.$store.commit('addCostDirection', response.data.costDirection);
                         this.resetData();
 
-                        this.$refs.addCostItemButton.removeAttribute('disabled');
+                        this.$refs.addCostDirectionButton.removeAttribute('disabled');
                         this.$refs.preloader.style.display = 'none';
+                        this.toggleModal();
                     }, 500);
 
                     /*notification with toastr*/
-                    //toastr.success(response.data.message);
 
                 }).catch(error => {
 
@@ -132,7 +103,7 @@
                         if (error.response.data.errors.title) {
                             this.$set(this.errors, 'title', error.response.data.errors.title[0]);
                         }
-                        this.$refs.addCostItemButton.removeAttribute('disabled');
+                        this.$refs.addCostDirectionButton.removeAttribute('disabled');
                         this.$refs.preloader.style.display = 'none';
                     }, 500);
                 });
@@ -173,13 +144,13 @@
       background-color: rgba(255, 255, 255, 0.6)
    }
 
-   .add-cost-item-form-container {
+   .add-cost-direction-form-container {
       background-color: white;
       padding: 25px 20px;
       position: relative;
    }
 
-   .add-cost-item-form-container .input-group-text {
+   .add-cost-direction-form-container .input-group-text {
       background-color: #2c804e;
       color: white;
       padding: 0.20rem 0.75rem;
@@ -192,7 +163,7 @@
       background-color: whitesmoke;
    }
 
-   .add-cost-item span {
+   .add-cost-direction span {
       background-color: #2c804e;
       color: #e8ebcc;
       cursor: pointer;
@@ -212,19 +183,13 @@
       transition-duration: .3s;
    }
 
-   .add-cost-item span:hover {
+   .add-cost-direction span:hover {
       background-color: #246339;
       color: #ebe14f;
    }
 
-   .add-cost-item-but:disabled {
+   .add-cost-direction-but:disabled {
       cursor: not-allowed;
-   }
-
-   .cost-items-ul {
-      font-size: 18px;
-      font-family: 'Poiret One', cursive;
-      font-weight: bold;
    }
 
    .edit-i {
@@ -251,4 +216,5 @@
          transform: scale(1)
       }
    }
+
 </style>

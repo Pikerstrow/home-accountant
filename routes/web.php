@@ -15,8 +15,8 @@ Auth::routes();
 Route::middleware('auth')->group(function () {
     Route::get('/', 'HomeController@index')->name('home');
     Route::get('/get-username', 'HomeController@getUsername');
-    Route::get('/get-all-cost-items', 'CostItemsController@getCostItems');
-    Route::post('/add-cost-item', 'CostItemsController@createCostItem');
+    Route::get('/get-all-cost-directions', 'CostDirectionsController@getCostDirections');
+    Route::post('/add-cost-direction', 'CostDirectionsController@createCostDirection');
 });
 
 

@@ -6,25 +6,25 @@ Vue.use(Vuex);
 export const store = new Vuex.Store({
     state: {
         username: null,
-        costItems: [],
+        costDirections: [],
     },
     getters: {
         username(state) {
             return state.username;
         },
-        costItems(state) {
-            return state.costItems;
+        costDirections(state) {
+            return state.costDirections;
         }
     },
     mutations: {
         GET_USER_NAME(state, payload){
             state.username = payload;
         },
-        GET_ALL_COST_ITEMS(state, payload){
-            state.costItems = payload;
+        GET_ALL_COST_DIRECTIONS(state, payload){
+            state.costDirections = payload;
         },
-        addCostItem(state, payload){
-            state.costItems.unshift(payload);
+        addCostDirection(state, payload){
+            state.costDirections.push(payload);
         }
     },
     actions: {
@@ -37,10 +37,10 @@ export const store = new Vuex.Store({
                 console.log(error)
             });
         },
-        getAllCostItems({commit}){
-            axios.get('/get-all-cost-items').then(
+        getAllCostDirections({commit}){
+            axios.get('/get-all-cost-directions').then(
                 response => {
-                    commit('GET_ALL_COST_ITEMS', response.data.costItems);
+                    commit('GET_ALL_COST_DIRECTIONS', response.data.costDirections);
                 }
             ).catch(error => {
                 console.log(error)

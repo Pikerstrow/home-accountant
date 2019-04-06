@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Expense;
 
 class CostItem extends Model
 {
@@ -15,8 +14,9 @@ class CostItem extends Model
         return $this->hasMany(Expense::class);
     }
 
-    public function user()
+    public function costDirection()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(CostDirection::class);
     }
+
 }

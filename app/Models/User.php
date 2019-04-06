@@ -37,9 +37,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function costDirections()
+    {
+        return $this->hasMany(CostDirection::class);
+    }
+
     public function costItems()
     {
-        return $this->hasMany(CostItem::class);
+        return $this->hasMany(CostItems::class);
     }
 
     public function expenses()

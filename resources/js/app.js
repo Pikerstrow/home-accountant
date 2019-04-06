@@ -35,6 +35,7 @@ import { store } from './store.js';
 
 Vue.use(VueRouter);
 
+
 const router = new VueRouter({
     routes,
     mode: 'history'

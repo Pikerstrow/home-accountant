@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCostItemsTable extends Migration
+class CreateCostDirectionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class CreateCostItemsTable extends Migration
      */
     public function up()
     {
-        Schema::create('cost_items', function (Blueprint $table) {
+        Schema::create('cost_directions', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('cost_direction_id')->unsigned()->index();
             $table->integer('user_id')->unsigned()->index();
             $table->string('title');
         });
@@ -28,6 +27,6 @@ class CreateCostItemsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cost_items');
+        Schema::dropIfExists('cost_directions');
     }
 }

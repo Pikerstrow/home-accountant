@@ -23,7 +23,7 @@
         },
         mounted(){
             this.$store.dispatch('getUserName');
-            this.$store.dispatch('getAllCostItems');
+            this.$store.dispatch('getAllCostDirections');
         }
     }
 </script>
