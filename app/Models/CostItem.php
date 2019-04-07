@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class CostItem extends Model
 {
-    protected $fillable= ['title', 'user_id'];
+    protected $fillable= ['title', 'cost_direction_id'];
     public $timestamps = false;
 
     public function expenses()

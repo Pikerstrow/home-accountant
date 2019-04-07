@@ -24,7 +24,7 @@
 
       <!-- modal -->
       <div ref="modalwrapper" id="modal-wrapper" class="modal justify-content-center align-items-center">
-         <div class="animate col-12 col-sm-8 col-md-6 col-lg-4 col-xl-3 add-cost-direction-form-container">
+         <div class="animate col-12 col-sm-8 col-md-6 col-lg-4 add-cost-direction-form-container">
             <h2 class="admin-welcome-h2 text-center">
                Додати статтю витрат
             </h2>

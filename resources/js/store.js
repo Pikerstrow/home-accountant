@@ -7,6 +7,7 @@ export const store = new Vuex.Store({
     state: {
         username: null,
         costDirections: [],
+        currentDaysExpenses: []
     },
     getters: {
         username(state) {
@@ -14,6 +15,9 @@ export const store = new Vuex.Store({
         },
         costDirections(state) {
             return state.costDirections;
+        },
+        currentDaysExpenses(state){
+            return state.currentDaysExpenses;
         }
     },
     mutations: {
@@ -45,6 +49,9 @@ export const store = new Vuex.Store({
             ).catch(error => {
                 console.log(error)
             });
+        },
+        getcurrentDaysExpenses({commit}){
+
         }
     }
 });

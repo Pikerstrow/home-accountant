@@ -47,7 +47,6 @@
                               <!--<router-link :to="'/tasks/edit/' + task.id" tag="a" class="task-edit" title="Редагувати" active-class="active" exact>-->
                               <i class="edit-i fas fa-pencil-alt"></i>
                               <!--</router-link>-->
-
                               <a title="Видалити"><i class="delete-i fas fa-times"></i></a>
                            </td>
                         </tr>

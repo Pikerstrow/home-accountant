@@ -18,9 +18,7 @@ class CostItemsController extends Controller
             'cost_direction_id' => 'required'
         ]);
 
-        $costDirection = CostDirection::findOrFail($request->get('cost_direction_id'));
-
-        $costItem = $costDirection->costItems()->create($validated);
+        $costItem = CostItem::create($validated);
 
         return response()->json([
             'costItem' => $costItem,

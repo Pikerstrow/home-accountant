@@ -2060,7 +2060,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ExpensesComponent",
@@ -39883,7 +39882,7 @@ var render = function() {
           "div",
           {
             staticClass:
-              "animate col-12 col-sm-8 col-md-6 col-lg-4 col-xl-3 add-cost-direction-form-container"
+              "animate col-12 col-sm-8 col-md-6 col-lg-4 add-cost-direction-form-container"
           },
           [
             _c("h2", { staticClass: "admin-welcome-h2 text-center" }, [
@@ -57571,7 +57570,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
 var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   state: {
     username: null,
-    costDirections: []
+    costDirections: [],
+    currentDaysExpenses: []
   },
   getters: {
     username: function username(state) {
@@ -57579,6 +57579,9 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
     },
     costDirections: function costDirections(state) {
       return state.costDirections;
+    },
+    currentDaysExpenses: function currentDaysExpenses(state) {
+      return state.currentDaysExpenses;
     }
   },
   mutations: {
@@ -57608,6 +57611,9 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
       }).catch(function (error) {
         console.log(error);
       });
+    },
+    getcurrentDaysExpenses: function getcurrentDaysExpenses(_ref3) {
+      var commit = _ref3.commit;
     }
   }
 });

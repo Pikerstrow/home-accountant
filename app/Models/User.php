@@ -42,4 +42,19 @@ class User extends Authenticatable
         return $this->hasMany(CostDirection::class);
     }
 
+    public function costItems()
+    {
+        return $this->hasManyThrough(CostItem::class, CostDirection::class);
+    }
+
+//    public function costItems()
+//    {
+//        return $this->hasMany(CostItem::class);
+//    }
+//
+//    public function expenses()
+//    {
+//        return $this->hasMany(Expense::class);
+//    }
+
 }

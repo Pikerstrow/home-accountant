@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CostDirection;
+use App\Models\CostItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,6 +14,15 @@ class CostDirectionsController extends Controller
         $costDirections = Auth::user()->costDirections()->get();
 
         foreach($costDirections as $direction){
+            $costItems = $direction->costItems;
+
+            /*Filter for default cost items title ('-') which is used for expenses which has directions only*/
+            foreach($costItems as $key => $item){
+                if($item->title == '-'){
+                    unset($costItems[$key]);
+                }
+            }
+
             $direction['cost_items'] = $direction->costItems;
         }
 
@@ -20,6 +30,7 @@ class CostDirectionsController extends Controller
             'costDirections' => $costDirections
         ], 200);
     }
+
 
     public function createCostDirection(Request $request)
     {
@@ -30,11 +41,21 @@ class CostDirectionsController extends Controller
 
         $costDirection = $request->user()->costDirections()->create($validated);
 
+        if(!$validated['has_cost_items']){
+
+            CostItem::create([
+                'title' => '-',
+                'cost_direction_id' => $costDirection->id
+            ]);
+
+        }
+
         return response()->json([
             'costDirection' => $costDirection,
             'message' => 'Стаття витрат успішно доданий!'
         ], 200);
     }
+
 
     public function updateHasCostItemsProperty(Request $request)
     {

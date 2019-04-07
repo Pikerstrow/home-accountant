@@ -18,7 +18,6 @@ class CreateCostDirectionsTable extends Migration
             $table->integer('user_id')->unsigned()->index();
             $table->string('title');
             $table->boolean('has_cost_items')->default(false);
-            $table->decimal('sum')->default(false);
         });
     }
 
