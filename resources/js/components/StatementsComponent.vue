@@ -6,6 +6,11 @@
                Звіт
             </h2>
             <hr>
+            <div class="row d-flex justify-content-center">
+               <div class="col-6 mt-5 text-center">
+                  <!--<switcher></switcher>-->
+               </div>
+            </div>
          </div>
       </div>
 
@@ -13,8 +18,13 @@
 </template>
 
 <script>
+   import Switcher from './parts/Switcher';
+
     export default {
-        name: "StatementsComponent"
+        name: "StatementsComponent",
+        components: {
+            'switcher': Switcher
+        }
     }
 </script>
 

@@ -17,6 +17,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/get-username', 'HomeController@getUsername');
     Route::get('/get-all-cost-directions', 'CostDirectionsController@getCostDirections');
     Route::post('/add-cost-direction', 'CostDirectionsController@createCostDirection');
+    Route::post('/update-has-cost-items-property', 'CostDirectionsController@updateHasCostItemsProperty');
+    Route::post('/add-cost-item', 'CostItemsController@createCostItem');
 });
 
 

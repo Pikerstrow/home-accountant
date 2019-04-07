@@ -42,13 +42,4 @@ class User extends Authenticatable
         return $this->hasMany(CostDirection::class);
     }
 
-    public function costItems()
-    {
-        return $this->hasMany(CostItems::class);
-    }
-
-    public function expenses()
-    {
-        return $this->hasMany(Expense::class);
-    }
 }

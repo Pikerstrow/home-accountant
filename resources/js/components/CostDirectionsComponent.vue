@@ -29,19 +29,27 @@
                Додати статтю витрат
             </h2>
             <hr>
-            <div class="form-group mb-3 mt-3">
+            <div class="form-group mb-3 mt-4">
+               <label for="title">Назва</label>
                <input v-model="title" @focus="errors.title ? errors.title = '' : ''" type="text" id="title" name="title"
-                      :class="{'is-invalid': errors.title}" class="form-control"
-                      placeholder="Назва напрямку витрат">
+                      :class="{'is-invalid': errors.title}" class="form-control">
                <div v-if="errors.title" class="invalid-feedback">{{ errors.title }}</div>
                <small><b>Увага!</b> Приймаються лише значення введені кирилицею.</small>
             </div>
-            <div class="form-check">
-               <input v-model="hasCostItems" :class="{'is-invalid': errors.has_cost_items}" type="checkbox" class="form-check-input" id="hasElems">
+
+            <div class="form-group mt-4">
+               <div class="row">
+                  <div class="col-12 d-flex align-items-center">
+                     <switcher ref="switcher" v-model="hasCostItems"></switcher>
+                     <span class="ml-3"><b>[ {{ hasCostItems ? 'Так' : 'Ні' }} ]</b></span> <span class="ml-3">Буде містити елементи?</span>
+                  </div>
+
+               </div>
                <div v-if="errors.has_cost_items" class="invalid-feedback">{{ errors.has_cost_items }}</div>
-               <label class="form-check-label" for="hasElems">Містить елементи</label>
             </div>
+
             <hr class="button-separator">
+
             <div class="form-group d-flex justify-content-between mt-4">
                <button ref="addCostDirectionButton" @click="addCostDirection" class="col-4 btn btn-success add-cost-item-but">
                Додати
@@ -60,13 +68,14 @@
 
 <script>
     import AccordionCard from './parts/AccordionCard';
-
+    import Switcher from './parts/Switcher';
     export default {
         data() {
             return {
                 title: '',
-                hasCostItems: '',
-                errors: {}
+                hasCostItems: false,
+                errors: {},
+                switcherOn: false
             }
         },
         computed: {
@@ -91,7 +100,6 @@
                     '/add-cost-direction',
                     {'title': this.title, 'has_cost_items': this.hasCostItems}
                 ).then(response => {
-
                     setTimeout(() => {
                         this.$store.commit('addCostDirection', response.data.costDirection);
                         this.resetData();
@@ -116,16 +124,26 @@
             },
             resetData() {
                 this.title = '';
-                this.errors = {}
+                this.errors = {};
+                this.$refs.switcher.toggleSwitcher();
             }
         },
         components: {
-            'accordion-card': AccordionCard
+            'accordion-card': AccordionCard,
+            'switcher': Switcher
+        },
+        created(){
+            this.$on('input', function(value){
+                this.hasCostItems = value;
+            });
         }
     }
 </script>
 
 <style scoped>
+   #title {
+      border-radius: unset;
+   }
    #modal-wrapper {
       display: none;
       position: fixed;
@@ -154,6 +172,21 @@
       background-color: white;
       padding: 25px 20px;
       position: relative;
+   }
+
+   .add-cost-direction-form-container .form-group{
+      font-family: 'Poiret One', cursive;
+      font-size: 18px;
+   }
+
+   .add-cost-direction-form-container label{
+      font-weight: bold;
+      font-size: 18px;
+   }
+
+   .add-cost-direction-form-container button {
+      font-weight: bold;
+      font-size: 18px;
    }
 
    .add-cost-direction-form-container .input-group-text {

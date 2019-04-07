@@ -16,7 +16,6 @@ class CreateExpensesTable extends Migration
         Schema::create('expenses', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('cost_item_id')->unsigned()->index();
-            $table->integer('user_id')->unsigned()->index();
             $table->decimal('sum', 8, 2);
             $table->date('date');
         });

@@ -16,7 +16,6 @@ class CreateCostItemsTable extends Migration
         Schema::create('cost_items', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('cost_direction_id')->unsigned()->index();
-            $table->integer('user_id')->unsigned()->index();
             $table->string('title');
         });
     }
