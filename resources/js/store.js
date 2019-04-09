@@ -27,6 +27,9 @@ export const store = new Vuex.Store({
         GET_ALL_COST_DIRECTIONS(state, payload){
             state.costDirections = payload;
         },
+        GET_CURRENT_DAY_EXPENSES(state, payload){
+            state.currentDaysExpenses = payload;
+        },
         addCostDirection(state, payload){
             state.costDirections.push(payload);
         }
@@ -50,8 +53,14 @@ export const store = new Vuex.Store({
                 console.log(error)
             });
         },
-        getcurrentDaysExpenses({commit}){
-
+        getCurrentDaysExpenses({commit}){
+            axios.get('/get-current-day-expenses').then(
+                response => {
+                    commit('GET_CURRENT_DAY_EXPENSES', response.data.currentDayExpenses);
+                }
+            ).catch(error => {
+                console.log(error)
+            });
         }
     }
 });

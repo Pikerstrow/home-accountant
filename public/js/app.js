@@ -2048,34 +2048,81 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ExpensesComponent",
   data: function data() {
     return {
       date: '',
+      cost_direction: '',
       cost_item: '',
       sum: '',
       options: {
         locale: 'UK-ua',
         dateFormat: 'dd/mm/YYYY',
         useCurrentDate: true
-      }
+      },
+      costItemsFiltered: {}
     };
   },
+  watch: {
+    cost_direction: function cost_direction(val) {
+      var costItems = {};
+      this.expensesDirections.filter(function (elem) {
+        if (elem.id == val) {
+          costItems.items = elem.cost_items;
+        }
+      }); // Перевірка на дефолтне значення імені елементів витрат
+
+      for (var i = 0; i < costItems.items.length; i++) {
+        if (costItems.items[i].title == '-') {
+          costItems.items.splice(i, 1);
+        }
+      }
+
+      this.costItemsFiltered = costItems.items;
+    }
+  },
+  computed: {
+    currentDayExpenses: function currentDayExpenses() {
+      return this.$store.getters.currentDaysExpenses;
+    },
+    expensesDirections: function expensesDirections() {
+      return this.$store.getters.costDirections;
+    },
+    currentDate: function currentDate() {
+      var today = new Date();
+      var options = {
+        year: 'numeric',
+        month: 'long',
+        day: '2-digit',
+        timezone: 'UTC+2'
+      };
+      return today.toLocaleString("UK-ua", options);
+    },
+    concreteDate: function concreteDate() {
+      var year = this.$route.query.year ? this.$route.query.year : '';
+      var month = this.$route.query.month ? this.$route.query.month : '';
+      var date = this.$route.query.date ? this.$route.query.date : '';
+      var concreteDate = new Date(year, month, date);
+      var options = {
+        year: 'numeric',
+        month: 'long',
+        day: '2-digit',
+        timezone: 'UTC+2'
+      };
+      return concreteDate.toLocaleString("UK-ua", options);
+    }
+  },
   methods: {
+    addExpense: function addExpense() {
+      console.log(this.date + " | " + this.cost_direction + " | " + this.cost_item + " | " + this.sum);
+    },
+    enableCostItemsSelect: function enableCostItemsSelect() {
+      if (this.$refs.costItem.hasAttribute('disabled')) {
+        this.$refs.costItem.removeAttribute('disabled');
+      }
+    },
     toggleModal: function toggleModal() {
       var modal = this.$refs.modalwrapper;
 
@@ -2128,6 +2175,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     this.$store.dispatch('getUserName');
     this.$store.dispatch('getAllCostDirections');
+    this.$store.dispatch('getCurrentDaysExpenses');
   }
 });
 
@@ -2266,6 +2314,14 @@ __webpack_require__.r(__webpack_exports__);
       var directionCostItems = this.direction.cost_items;
 
       if (directionCostItems && directionCostItems.length > 0) {
+        /*Так як по замовчуванню для напрямків, для яких не передбачені елементи витрат в бд
+        * використовуються "-", то при виводі необхідно знайти елемент із такою назвою та видалити його*/
+        for (var i = 0; i < directionCostItems.length; i++) {
+          if (directionCostItems[i].title == '-') {
+            directionCostItems.splice(i, 1);
+          }
+        }
+
         return directionCostItems;
       }
 
@@ -40051,23 +40107,68 @@ var render = function() {
     _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col-12" }, [
         _c("h2", { staticClass: "admin-welcome-h2 text-center" }, [
-          _vm._v("\n            Витрати\n         ")
+          _vm._v(
+            "\n            Витрати " +
+              _vm._s(
+                this.$route.query.year &&
+                  this.$route.query.month &&
+                  this.$route.query.date
+                  ? _vm.concreteDate
+                  : _vm.currentDate
+              ) +
+              "\n         "
+          )
         ]),
         _vm._v(" "),
         _c("hr"),
         _vm._v(" "),
-        _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "row d-flex justify-content-center" }, [
           _c(
             "div",
             {
-              staticClass: "col-12 text-left add-expense",
+              staticClass:
+                "col-12 col-sm-10 col-md-8 col-lg-6 text-left add-expense",
               on: { click: _vm.toggleModal }
             },
             [_c("span", [_vm._v("+")])]
           )
         ]),
         _vm._v(" "),
-        _vm._m(0)
+        _c("div", { staticClass: "row d-flex justify-content-center" }, [
+          _c("div", { staticClass: "col-12 col-sm-10 col-md-8 col-lg-6" }, [
+            _c("div", { staticClass: "table-responsive" }, [
+              _c(
+                "table",
+                {
+                  staticClass: "table table-bordered table-hover table-expenses"
+                },
+                [
+                  _vm._m(0),
+                  _vm._v(" "),
+                  _c(
+                    "tbody",
+                    _vm._l(_vm.currentDayExpenses, function(expense, index) {
+                      return _c("tr", { key: index }, [
+                        _c("td", [_vm._v(_vm._s(index + 1))]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _vm._v(_vm._s(expense.cost_direction.title))
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(expense.cost_item.title))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(expense.sum))]),
+                        _vm._v(" "),
+                        _vm._m(1, true)
+                      ])
+                    }),
+                    0
+                  )
+                ]
+              )
+            ])
+          ])
+        ])
       ])
     ]),
     _vm._v(" "),
@@ -40112,9 +40213,137 @@ var render = function() {
               1
             ),
             _vm._v(" "),
-            _vm._m(1),
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "category" } }, [_vm._v("Стаття")]),
+              _vm._v(" "),
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.cost_direction,
+                      expression: "cost_direction"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { id: "cost_direction" },
+                  on: {
+                    input: _vm.enableCostItemsSelect,
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.cost_direction = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
+                    }
+                  }
+                },
+                [
+                  _c(
+                    "option",
+                    { attrs: { selected: "", disabled: "", value: "" } },
+                    [_vm._v("Виберіть статтю витрат")]
+                  ),
+                  _vm._v(" "),
+                  _vm._l(_vm.expensesDirections, function(direction, index) {
+                    return _c(
+                      "option",
+                      { key: index, domProps: { value: direction.id } },
+                      [_vm._v(_vm._s(direction.title) + "\n               ")]
+                    )
+                  })
+                ],
+                2
+              )
+            ]),
             _vm._v(" "),
-            _vm._m(2),
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "category" } }, [_vm._v("Елемент")]),
+              _vm._v(" "),
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.cost_item,
+                      expression: "cost_item"
+                    }
+                  ],
+                  ref: "costItem",
+                  staticClass: "form-control",
+                  attrs: { id: "cost_item", disabled: "" },
+                  on: {
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.cost_item = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
+                    }
+                  }
+                },
+                [
+                  _c(
+                    "option",
+                    { attrs: { selected: "", disabled: "", value: "" } },
+                    [_vm._v("Виберіть елемент витрат")]
+                  ),
+                  _vm._v(" "),
+                  _vm._l(_vm.costItemsFiltered, function(item, index) {
+                    return _c(
+                      "option",
+                      { key: index, domProps: { value: item.id } },
+                      [_vm._v(_vm._s(item.title) + "\n               ")]
+                    )
+                  })
+                ],
+                2
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "sum" } }, [_vm._v("Сума, грн")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.sum,
+                    expression: "sum"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { type: "text", id: "sum" },
+                domProps: { value: _vm.sum },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.sum = $event.target.value
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _vm._m(2)
+            ]),
             _vm._v(" "),
             _c("hr", { staticClass: "button-separator" }),
             _vm._v(" "),
@@ -40122,9 +40351,14 @@ var render = function() {
               "div",
               { staticClass: "form-group d-flex justify-content-between mt-4" },
               [
-                _c("button", { staticClass: "col-4 btn btn-success" }, [
-                  _vm._v("Додати")
-                ]),
+                _c(
+                  "button",
+                  {
+                    staticClass: "col-4 btn btn-success",
+                    on: { click: _vm.addExpense }
+                  },
+                  [_vm._v("Додати")]
+                ),
                 _vm._v(" "),
                 _c(
                   "button",
@@ -40147,88 +40381,17 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-12" }, [
-        _c("div", { staticClass: "table-responsive" }, [
-          _c(
-            "table",
-            { staticClass: "table table-bordered table-hover table-expenses" },
-            [
-              _c("thead", [
-                _c("tr", [
-                  _c("th", [_vm._v("№")]),
-                  _vm._v(" "),
-                  _c("th", [_vm._v("Дата")]),
-                  _vm._v(" "),
-                  _c("th", [_vm._v("Категорія")]),
-                  _vm._v(" "),
-                  _c("th", [_vm._v("Сума, грн")]),
-                  _vm._v(" "),
-                  _c("th", [_vm._v("Дії")])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("tbody", [
-                _c("tr", [
-                  _c("td", [_vm._v("1")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v("02/04/2019")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v("Медецина")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v("63,80")]),
-                  _vm._v(" "),
-                  _c("td", [
-                    _c("i", {
-                      staticClass: "edit-i fas fa-pencil-alt",
-                      attrs: { title: "Редагувати" }
-                    }),
-                    _vm._v(" "),
-                    _c("a", { attrs: { title: "Видалити" } }, [
-                      _c("i", { staticClass: "delete-i fas fa-times" })
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("tr", [
-                  _c("td", [_vm._v("2")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v("02/04/2019")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v("Продукти")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v("251,62")]),
-                  _vm._v(" "),
-                  _c("td", [
-                    _c("i", { staticClass: "edit-i fas fa-pencil-alt" }),
-                    _vm._v(" "),
-                    _c("a", { attrs: { title: "Видалити" } }, [
-                      _c("i", { staticClass: "delete-i fas fa-times" })
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("tr", [
-                  _c("td", [_vm._v("3")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v("02/04/2019")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v("Автомобіль")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v("200,00")]),
-                  _vm._v(" "),
-                  _c("td", [
-                    _c("i", { staticClass: "edit-i fas fa-pencil-alt" }),
-                    _vm._v(" "),
-                    _c("a", { attrs: { title: "Видалити" } }, [
-                      _c("i", { staticClass: "delete-i fas fa-times" })
-                    ])
-                  ])
-                ])
-              ])
-            ]
-          )
-        ])
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("№")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Стаття")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Елемент")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Сума, грн")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Дії")])
       ])
     ])
   },
@@ -40236,42 +40399,24 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("label", { attrs: { for: "category" } }, [_vm._v("Стаття")]),
-      _vm._v(" "),
-      _c(
-        "select",
-        { staticClass: "form-control", attrs: { id: "cost_item" } },
-        [
-          _c("option", [_vm._v("Автомобіль")]),
-          _vm._v(" "),
-          _c("option", [_vm._v("Ліки")]),
-          _vm._v(" "),
-          _c("option", [_vm._v("Продукти")]),
-          _vm._v(" "),
-          _c("option", [_vm._v("Комунальні")]),
-          _vm._v(" "),
-          _c("option", [_vm._v("Інше")])
-        ]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("label", { attrs: { for: "sum" } }, [_vm._v("Сума, грн")]),
-      _vm._v(" "),
-      _c("input", {
-        staticClass: "form-control",
-        attrs: { type: "text", id: "sum" }
+    return _c("td", [
+      _c("i", {
+        staticClass: "edit-i fas fa-pencil-alt",
+        attrs: { title: "Редагувати" }
       }),
       _vm._v(" "),
-      _c("small", [
-        _c("b", [_vm._v("Увага!")]),
-        _vm._v(" Дробні числа необхідно вводити через крапку.")
+      _c("a", { attrs: { title: "Видалити" } }, [
+        _c("i", { staticClass: "delete-i fas fa-times" })
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("small", [
+      _c("b", [_vm._v("Увага!")]),
+      _vm._v(" Дробні числа необхідно вводити через крапку.")
     ])
   }
 ]
@@ -57591,6 +57736,9 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
     GET_ALL_COST_DIRECTIONS: function GET_ALL_COST_DIRECTIONS(state, payload) {
       state.costDirections = payload;
     },
+    GET_CURRENT_DAY_EXPENSES: function GET_CURRENT_DAY_EXPENSES(state, payload) {
+      state.currentDaysExpenses = payload;
+    },
     addCostDirection: function addCostDirection(state, payload) {
       state.costDirections.push(payload);
     }
@@ -57612,8 +57760,13 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
         console.log(error);
       });
     },
-    getcurrentDaysExpenses: function getcurrentDaysExpenses(_ref3) {
+    getCurrentDaysExpenses: function getCurrentDaysExpenses(_ref3) {
       var commit = _ref3.commit;
+      axios.get('/get-current-day-expenses').then(function (response) {
+        commit('GET_CURRENT_DAY_EXPENSES', response.data.currentDayExpenses);
+      }).catch(function (error) {
+        console.log(error);
+      });
     }
   }
 });

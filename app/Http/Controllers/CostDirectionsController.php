@@ -11,20 +11,7 @@ class CostDirectionsController extends Controller
 {
     public function getCostDirections()
     {
-        $costDirections = Auth::user()->costDirections()->get();
-
-        foreach($costDirections as $direction){
-            $costItems = $direction->costItems;
-
-            /*Filter for default cost items title ('-') which is used for expenses which has directions only*/
-            foreach($costItems as $key => $item){
-                if($item->title == '-'){
-                    unset($costItems[$key]);
-                }
-            }
-
-            $direction['cost_items'] = $direction->costItems;
-        }
+        $costDirections = Auth::user()->costDirections()->with('costItems')->get();
 
         return response()->json([
             'costDirections' => $costDirections
@@ -76,4 +63,5 @@ class CostDirectionsController extends Controller
             ]);
         }
     }
+
 }

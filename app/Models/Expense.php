@@ -15,4 +15,13 @@ class Expense extends Model
         return $this->belongsTo(CostItem::class);
     }
 
+    public function costDirection()
+    {
+        return $this->belongsTo(CostDirection::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

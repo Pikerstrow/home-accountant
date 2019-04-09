@@ -82,7 +82,17 @@
         computed: {
             directionCostItems() {
                 let directionCostItems = this.direction.cost_items;
+
                 if (directionCostItems && directionCostItems.length > 0) {
+
+                    /*Так як по замовчуванню для напрямків, для яких не передбачені елементи витрат в бд
+                    * використовуються "-", то при виводі необхідно знайти елемент із такою назвою та видалити його*/
+                    for(let i = 0; i < directionCostItems.length; i++){
+                        if(directionCostItems[i].title == '-'){
+                            directionCostItems.splice(i, 1);
+                        }
+                    }
+
                     return directionCostItems;
                 }
                 return [];

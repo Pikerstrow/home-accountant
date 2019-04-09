@@ -24,6 +24,7 @@
         mounted(){
             this.$store.dispatch('getUserName');
             this.$store.dispatch('getAllCostDirections');
+            this.$store.dispatch('getCurrentDaysExpenses');
         }
     }
 </script>

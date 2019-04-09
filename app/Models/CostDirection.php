@@ -23,4 +23,9 @@ class CostDirection extends Model
     {
         return $this->hasMany(CostItem::class);
     }
+
+    public function expenses()
+    {
+        return $this->hasMany(Expense::class);
+    }
 }

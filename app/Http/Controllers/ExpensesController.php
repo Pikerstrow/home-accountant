@@ -13,36 +13,14 @@ class ExpensesController extends Controller
     // Returns current dya expenses
     public function index()
     {
-        $expensesWithDirections = [];
-
         $today = Carbon::today();
-//        $expenses = Auth::user()->expenses()->whereRaw("Date(date) = '{$today}'")->get();
-        $costItems = Auth::user()->costItems;
 
-        foreach($costItems as $item){
-            $expenses = $item->expenses()->whereRaw("Date(date) = '{$today}'")->get();
-            $direction = $item->costDirection;
+        $expenses = Auth::user()->expenses()
+                                ->with('costItem:id,title', 'costDirection:id,title')
+                                ->whereRaw("Date(date) = '{$today}'")->get();
 
-            $expensesWithDirections[$direction->title][$item->title] = $expenses;
-        }
-
-//        foreach($expenses as $expense){
-//
-//            if(!$expense->costItem){
-//                $direction = $expense->costDirection()->get();
-//                $expensesWithDirections[$direction->title]['-'] = $expense;
-//            } else {
-//                $costItem = $expense->costItem()->get();
-//                $direction = $costItem->costDirection()->get();
-//
-//                $expensesWithDirections[$direction->title][$costItem->title] = $expense;
-//
-//            }
-//        }
-
-
-
-
-        return response()->json([$expensesWithDirections]);
+        return response()->json([
+            'currentDayExpenses' => $expenses
+        ], 200);
     }
 }
