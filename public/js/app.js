@@ -2048,6 +2048,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ExpensesComponent",
@@ -2059,10 +2079,11 @@ __webpack_require__.r(__webpack_exports__);
       sum: '',
       options: {
         locale: 'UK-ua',
-        dateFormat: 'dd/mm/YYYY',
+        dateFormat: 'dd-mm-YYYY',
         useCurrentDate: true
       },
-      costItemsFiltered: {}
+      costItemsFiltered: {},
+      errors: {}
     };
   },
   watch: {
@@ -2116,7 +2137,61 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     addExpense: function addExpense() {
-      console.log(this.date + " | " + this.cost_direction + " | " + this.cost_item + " | " + this.sum);
+      var _this = this;
+
+      this.errors = {};
+      this.$refs.addExpenseButton.setAttribute('disabled', true);
+      this.$refs.preloader.style.display = 'flex';
+      var expense = {
+        sum: this.sum,
+        cost_item_id: this.cost_item,
+        cost_direction_id: this.cost_direction,
+        date: this.date
+      };
+      axios.post('/add-expense', expense).then(function (response) {
+        setTimeout(function () {
+          _this.$store.commit('addCurrentDayExpense', response.data.expense[0]);
+
+          _this.resetData();
+
+          _this.$refs.addExpenseButton.removeAttribute('disabled');
+
+          _this.$refs.preloader.style.display = 'none';
+
+          _this.$refs.costItem.setAttribute('disabled', true);
+
+          _this.toggleModal();
+        }, 500);
+      }).catch(function (error) {
+        console.log(error);
+
+        _this.$refs.addExpenseButton.removeAttribute('disabled');
+
+        _this.$refs.preloader.style.display = 'none';
+        console.log(error.response.data.errors);
+
+        if (error.response.data.errors.sum) {
+          _this.$set(_this.errors, 'sum', error.response.data.errors.sum[0]);
+        }
+
+        if (error.response.data.errors.cost_item_id) {
+          _this.$set(_this.errors, 'cost_item_id', error.response.data.errors.cost_item_id[0]);
+        }
+
+        if (error.response.data.errors.cost_direction_id) {
+          _this.$set(_this.errors, 'cost_direction_id', error.response.data.errors.cost_direction_id[0]);
+        }
+
+        if (error.response.data.errors.date) {
+          _this.$set(_this.errors, 'date', error.response.data.errors.date[0]);
+        }
+      });
+    },
+    resetData: function resetData() {
+      this.cost_direction = '';
+      this.cost_item = '';
+      this.sum = '';
+      this.errors = {};
     },
     enableCostItemsSelect: function enableCostItemsSelect() {
       if (this.$refs.costItem.hasAttribute('disabled')) {
@@ -7001,7 +7076,7 @@ exports = module.exports = __webpack_require__(/*! ../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".calendar-component[data-v-46519205] {\n  position: absolute;\n  left: 0;\n  background-color: white;\n  z-index: 9999;\n}\n.form-control[data-v-46519205] {\n  display: block;\n  width: 100%;\n  padding: 0.375rem 0.75rem;\n  font-size: 1rem;\n  line-height: 1.5;\n  color: #495057;\n  background-color: #fff;\n  background-clip: padding-box;\n  border: 1px solid #ced4da;\n  border-radius: 0.25rem;\n  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;\n  margin-bottom: 13px;\n}\n@media screen and (prefers-reduced-motion: reduce) {\n.form-control[data-v-46519205] {\n    transition: none;\n}\n}\n.form-control[data-v-46519205]::-ms-expand {\n  background-color: transparent;\n  border: 0;\n}\n.form-control[data-v-46519205]:focus {\n  color: #495057;\n  background-color: #fff;\n  border-color: #80bdff;\n  outline: 0;\n  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);\n}\n.form-control[data-v-46519205]::-webkit-input-placeholder {\n  color: #6c757d;\n  opacity: 1;\n}\n.form-control[data-v-46519205]:-ms-input-placeholder {\n  color: #6c757d;\n  opacity: 1;\n}\n.form-control[data-v-46519205]::-ms-input-placeholder {\n  color: #6c757d;\n  opacity: 1;\n}\n.form-control[data-v-46519205]::placeholder {\n  color: #6c757d;\n  opacity: 1;\n}\n.form-control[data-v-46519205]:disabled,\n.form-control[readonly][data-v-46519205] {\n  background-color: #e9ecef;\n  opacity: 1;\n}", ""]);
+exports.push([module.i, ".calendar-component[data-v-46519205] {\n  position: absolute;\n  left: 0;\n  background-color: white;\n  z-index: 9999;\n}\n.form-control[data-v-46519205] {\n  display: block;\n  width: 100%;\n  padding: 0.375rem 0.75rem;\n  font-size: 1rem;\n  line-height: 1.5;\n  color: #495057;\n  background-color: #fff;\n  background-clip: padding-box;\n  border: 1px solid #ced4da;\n  border-radius: 0.25rem;\n  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;\n  margin-bottom: 13px;\n}\n.form-control[data-v-46519205]:invalid, .form-control.is-invalid[data-v-46519205] {\n  border-color: #e3342f;\n  padding-right: calc(1.6em + 0.75rem);\n  border-color: #dc3545;\n  padding-right: calc(1.5em + 0.75rem);\n  background-image: url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23dc3545' viewBox='-2 -2 7 7'%3e%3cpath stroke='%23dc3545' d='M0 0l3 3m0-3L0 3'/%3e%3ccircle r='.5'/%3e%3ccircle cx='3' r='.5'/%3e%3ccircle cy='3' r='.5'/%3e%3ccircle cx='3' cy='3' r='.5'/%3e%3c/svg%3E\");\n  background-repeat: no-repeat;\n  background-position: center right calc(0.375em + 0.1875rem);\n  background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);\n}\n.invalid-feedback[data-v-46519205] {\n  width: 100%;\n  margin-top: 0.25rem;\n  font-size: 80%;\n  color: #dc3545;\n  margin-top: -13px;\n}\n@media screen and (prefers-reduced-motion: reduce) {\n.form-control[data-v-46519205] {\n    transition: none;\n}\n}\n.form-control[data-v-46519205]::-ms-expand {\n  background-color: transparent;\n  border: 0;\n}\n.form-control[data-v-46519205]:focus {\n  color: #495057;\n  background-color: #fff;\n  border-color: #80bdff;\n  outline: 0;\n  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);\n}\n.form-control[data-v-46519205]::-webkit-input-placeholder {\n  color: #6c757d;\n  opacity: 1;\n}\n.form-control[data-v-46519205]:-ms-input-placeholder {\n  color: #6c757d;\n  opacity: 1;\n}\n.form-control[data-v-46519205]::-ms-input-placeholder {\n  color: #6c757d;\n  opacity: 1;\n}\n.form-control[data-v-46519205]::placeholder {\n  color: #6c757d;\n  opacity: 1;\n}\n.form-control[data-v-46519205]:disabled,\n.form-control[readonly][data-v-46519205] {\n  background-color: #e9ecef;\n  opacity: 1;\n}", ""]);
 
 // exports
 
@@ -7096,7 +7171,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n#modal-wrapper[data-v-74df3447] {\n   display: none;\n   position: fixed;\n   z-index: 1000;\n   left: 0;\n   top: 0;\n   width: 100%;\n   height: 100%;\n   overflow: auto;\n   background-color: rgba(0, 0, 0, 0.6)\n}\n.add-expense-form-container[data-v-74df3447] {\n   background-color: white;\n   padding: 25px 20px;\n}\nhr.button-separator[data-v-74df3447] {\n   background-color: whitesmoke;\n}\n.add-expense span[data-v-74df3447] {\n   background-color: #2c804e;\n   color: #e8ebcc;\n   cursor: pointer;\n   font-size: 50px;\n   margin-top: 15px;\n   margin-bottom: 20px;\n   border-radius: 50%;\n   width: 50px;\n   height: 50px;\n   display: flex;\n   flex-direction: row;\n   justify-content: center;\n   align-items: center;\n   box-shadow: 1px 1px 31px -8px rgba(0, 0, 0, 1);\n   transition-duration: .3s;\n}\n.add-expense span[data-v-74df3447]:hover {\n   background-color: #246339;\n   color: #ebe14f;\n}\n.table-expenses thead th[data-v-74df3447], .table-expenses thead td[data-v-74df3447] {\n   border-bottom: unset !important;\n}\n.table-expenses th[data-v-74df3447], .table-expenses td[data-v-74df3447] {\n   padding: 0.3rem;\n}\n.table-expenses thead[data-v-74df3447] {\n   background-color: #dee2e659;\n}\n.edit-i[data-v-74df3447] {\n   cursor: pointer;\n   color: royalblue;\n   margin: 4px;\n}\n.delete-i[data-v-74df3447] {\n   cursor: pointer;\n   color: darkred;\n   margin: 4px;\n}\n.animate[data-v-74df3447] {\n   -webkit-animation: zoom-data-v-74df3447 .7s;\n           animation: zoom-data-v-74df3447 .7s\n}\n@-webkit-keyframes zoom-data-v-74df3447 {\nfrom {\n      -webkit-transform: scale(0);\n              transform: scale(0)\n}\nto {\n      -webkit-transform: scale(1);\n              transform: scale(1)\n}\n}\n@keyframes zoom-data-v-74df3447 {\nfrom {\n      -webkit-transform: scale(0);\n              transform: scale(0)\n}\nto {\n      -webkit-transform: scale(1);\n              transform: scale(1)\n}\n}\n", ""]);
+exports.push([module.i, "\n#modal-wrapper[data-v-74df3447] {\n   display: none;\n   position: fixed;\n   z-index: 1000;\n   left: 0;\n   top: 0;\n   width: 100%;\n   height: 100%;\n   overflow: auto;\n   background-color: rgba(0, 0, 0, 0.6)\n}\n.invalid-feedback[data-v-74df3447] {\n   margin-top: 0;\n}\n.preloader-container[data-v-74df3447] {\n   display: none;\n   position: absolute;\n   z-index: 1000;\n   left: 0;\n   top: 0;\n   width: 100%;\n   height: 100%;\n   overflow: auto;\n   background-color: rgba(255, 255, 255, 0.6)\n}\n.no-expenses-info[data-v-74df3447] {\n   border: 2px dashed grey;\n   padding: 20px 10px;\n   color: #2c804e;\n}\n.add-expense-form-container[data-v-74df3447] {\n   background-color: white;\n   padding: 25px 20px;\n   position: relative;\n}\nhr.button-separator[data-v-74df3447] {\n   background-color: whitesmoke;\n}\n.add-expense span[data-v-74df3447] {\n   background-color: #2c804e;\n   color: #e8ebcc;\n   cursor: pointer;\n   font-size: 50px;\n   margin-top: 15px;\n   margin-bottom: 20px;\n   border-radius: 50%;\n   width: 50px;\n   height: 50px;\n   display: flex;\n   flex-direction: row;\n   justify-content: center;\n   align-items: center;\n   box-shadow: 1px 1px 31px -8px rgba(0, 0, 0, 1);\n   transition-duration: .3s;\n}\n.add-expense span[data-v-74df3447]:hover {\n   background-color: #246339;\n   color: #ebe14f;\n}\n.table-expenses thead th[data-v-74df3447], .table-expenses thead td[data-v-74df3447] {\n   border-bottom: unset !important;\n}\n.table-expenses th[data-v-74df3447], .table-expenses td[data-v-74df3447] {\n   padding: 0.3rem;\n}\n.table-expenses thead[data-v-74df3447] {\n   background-color: #dee2e659;\n}\n.edit-i[data-v-74df3447] {\n   cursor: pointer;\n   color: royalblue;\n   margin: 4px;\n}\n.delete-i[data-v-74df3447] {\n   cursor: pointer;\n   color: darkred;\n   margin: 4px;\n}\n.animate[data-v-74df3447] {\n   -webkit-animation: zoom-data-v-74df3447 .7s;\n           animation: zoom-data-v-74df3447 .7s\n}\n@-webkit-keyframes zoom-data-v-74df3447 {\nfrom {\n      -webkit-transform: scale(0);\n              transform: scale(0)\n}\nto {\n      -webkit-transform: scale(1);\n              transform: scale(1)\n}\n}\n@keyframes zoom-data-v-74df3447 {\nfrom {\n      -webkit-transform: scale(0);\n              transform: scale(0)\n}\nto {\n      -webkit-transform: scale(1);\n              transform: scale(1)\n}\n}\n", ""]);
 
 // exports
 
@@ -39247,6 +39322,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -39255,6 +39332,9 @@ __webpack_require__.r(__webpack_exports__);
   name: "DatePiker",
   props: {
     value: {
+      default: ""
+    },
+    error: {
       default: ""
     },
     options: {
@@ -39613,6 +39693,7 @@ var render = function() {
           }
         ],
         staticClass: "form-control",
+        class: { "is-invalid": _vm.error },
         attrs: { type: "text", id: "inputForDatePiker" },
         domProps: { value: _vm.dateToShowInInput },
         on: {
@@ -39636,6 +39717,12 @@ var render = function() {
             staticClass: "calendar-component",
             attrs: { options: _vm.options }
           })
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.error
+        ? _c("div", { staticClass: "invalid-feedback" }, [
+            _vm._v(_vm._s(_vm.error))
+          ])
         : _vm._e()
     ],
     1
@@ -40135,39 +40222,52 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "row d-flex justify-content-center" }, [
-          _c("div", { staticClass: "col-12 col-sm-10 col-md-8 col-lg-6" }, [
-            _c("div", { staticClass: "table-responsive" }, [
-              _c(
-                "table",
-                {
-                  staticClass: "table table-bordered table-hover table-expenses"
-                },
-                [
-                  _vm._m(0),
-                  _vm._v(" "),
+          _vm.currentDayExpenses.length > 0
+            ? _c("div", { staticClass: "col-12 col-sm-10 col-md-8 col-lg-6" }, [
+                _c("div", { staticClass: "table-responsive" }, [
                   _c(
-                    "tbody",
-                    _vm._l(_vm.currentDayExpenses, function(expense, index) {
-                      return _c("tr", { key: index }, [
-                        _c("td", [_vm._v(_vm._s(index + 1))]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _vm._v(_vm._s(expense.cost_direction.title))
-                        ]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(expense.cost_item.title))]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(expense.sum))]),
-                        _vm._v(" "),
-                        _vm._m(1, true)
-                      ])
-                    }),
-                    0
+                    "table",
+                    {
+                      staticClass:
+                        "table table-bordered table-hover table-expenses"
+                    },
+                    [
+                      _vm._m(0),
+                      _vm._v(" "),
+                      _c(
+                        "tbody",
+                        _vm._l(_vm.currentDayExpenses, function(
+                          expense,
+                          index
+                        ) {
+                          return _c("tr", { key: index }, [
+                            _c("td", [_vm._v(_vm._s(index + 1))]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _vm._v(_vm._s(expense.cost_direction.title))
+                            ]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v(_vm._s(expense.cost_item.title))]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v(_vm._s(expense.sum))]),
+                            _vm._v(" "),
+                            _vm._m(1, true)
+                          ])
+                        }),
+                        0
+                      )
+                    ]
                   )
-                ]
+                ])
+              ])
+            : _c(
+                "div",
+                {
+                  staticClass:
+                    "col-12 col-sm-10 col-md-8 col-lg-6 no-expenses-info"
+                },
+                [_vm._m(2)]
               )
-            ])
-          ])
         ])
       ])
     ]),
@@ -40200,7 +40300,11 @@ var render = function() {
                 _c("label", { attrs: { for: "date" } }, [_vm._v("Дата")]),
                 _vm._v(" "),
                 _c("date-piker", {
-                  attrs: { id: "date", options: _vm.options },
+                  attrs: {
+                    id: "date",
+                    options: _vm.options,
+                    error: _vm.errors.date ? _vm.errors.date : ""
+                  },
                   model: {
                     value: _vm.date,
                     callback: function($$v) {
@@ -40228,6 +40332,7 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-control",
+                  class: { "is-invalid": _vm.errors.cost_direction_id },
                   attrs: { id: "cost_direction" },
                   on: {
                     input: _vm.enableCostItemsSelect,
@@ -40262,7 +40367,13 @@ var render = function() {
                   })
                 ],
                 2
-              )
+              ),
+              _vm._v(" "),
+              _vm.errors.cost_direction_id
+                ? _c("div", { staticClass: "invalid-feedback" }, [
+                    _vm._v(_vm._s(_vm.errors.cost_direction_id))
+                  ])
+                : _vm._e()
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
@@ -40281,6 +40392,7 @@ var render = function() {
                   ],
                   ref: "costItem",
                   staticClass: "form-control",
+                  class: { "is-invalid": _vm.errors.cost_item_id },
                   attrs: { id: "cost_item", disabled: "" },
                   on: {
                     change: function($event) {
@@ -40314,7 +40426,13 @@ var render = function() {
                   })
                 ],
                 2
-              )
+              ),
+              _vm._v(" "),
+              _vm.errors.cost_item_id
+                ? _c("div", { staticClass: "invalid-feedback" }, [
+                    _vm._v(_vm._s(_vm.errors.cost_item_id))
+                  ])
+                : _vm._e()
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
@@ -40330,6 +40448,7 @@ var render = function() {
                   }
                 ],
                 staticClass: "form-control",
+                class: { "is-invalid": _vm.errors.sum },
                 attrs: { type: "text", id: "sum" },
                 domProps: { value: _vm.sum },
                 on: {
@@ -40342,7 +40461,16 @@ var render = function() {
                 }
               }),
               _vm._v(" "),
-              _vm._m(2)
+              _vm.errors.sum
+                ? _c("div", { staticClass: "invalid-feedback" }, [
+                    _vm._v(_vm._s(_vm.errors.sum))
+                  ])
+                : _c("small", [
+                    _c("b", [_vm._v("Увага!")]),
+                    _vm._v(
+                      " Якщо сума з копійками, то копійки необхідно вводити через крапку."
+                    )
+                  ])
             ]),
             _vm._v(" "),
             _c("hr", { staticClass: "button-separator" }),
@@ -40354,6 +40482,7 @@ var render = function() {
                 _c(
                   "button",
                   {
+                    ref: "addExpenseButton",
                     staticClass: "col-4 btn btn-success",
                     on: { click: _vm.addExpense }
                   },
@@ -40368,6 +40497,20 @@ var render = function() {
                   },
                   [_vm._v("Відмінити")]
                 )
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                ref: "preloader",
+                staticClass:
+                  "preloader-container justify-content-center align-items-center"
+              },
+              [
+                _c("img", {
+                  attrs: { src: __webpack_require__(/*! ../../images/preloader.gif */ "./resources/images/preloader.gif") }
+                })
               ]
             )
           ]
@@ -40414,10 +40557,26 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("small", [
-      _c("b", [_vm._v("Увага!")]),
-      _vm._v(" Дробні числа необхідно вводити через крапку.")
-    ])
+    return _c(
+      "div",
+      {
+        staticClass:
+          "row d-flex justify-content-center align-items-center flex-column"
+      },
+      [
+        _c("div", { staticClass: "col-12 text-center m-3" }, [
+          _c("i", { staticClass: "far fa-smile-wink fa-4x" })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-12 text-center m-3" }, [
+          _c("h2", { staticClass: "admin-welcome-h2" }, [
+            _vm._v(
+              "\n                        У вказану дату витрати не здійснювались!\n                     "
+            )
+          ])
+        ])
+      ]
+    )
   }
 ]
 render._withStripped = true
@@ -57741,6 +57900,9 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
     },
     addCostDirection: function addCostDirection(state, payload) {
       state.costDirections.push(payload);
+    },
+    addCurrentDayExpense: function addCurrentDayExpense(state, payload) {
+      state.currentDaysExpenses.push(payload);
     }
   },
   actions: {

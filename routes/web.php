@@ -20,7 +20,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/update-has-cost-items-property', 'CostDirectionsController@updateHasCostItemsProperty');
     Route::post('/add-cost-item', 'CostItemsController@createCostItem');
     Route::get('/get-current-day-expenses', 'ExpensesController@index');
-    Route::get('/get-expenses-directions', 'ostDirectionsController@index');
+    Route::get('/get-expenses-directions', 'CostDirectionsController@index');
+    Route::post('/add-expense', 'ExpensesController@createExpense');
 });
 
 

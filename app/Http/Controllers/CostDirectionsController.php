@@ -39,7 +39,7 @@ class CostDirectionsController extends Controller
 
         return response()->json([
             'costDirection' => $costDirection,
-            'message' => 'Стаття витрат успішно доданий!'
+            'message' => 'Стаття витрат успішно додана!'
         ], 200);
     }
 

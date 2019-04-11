@@ -32,6 +32,9 @@ export const store = new Vuex.Store({
         },
         addCostDirection(state, payload){
             state.costDirections.push(payload);
+        },
+        addCurrentDayExpense(state, payload){
+            state.currentDaysExpenses.push(payload);
         }
     },
     actions: {

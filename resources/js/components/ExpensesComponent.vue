@@ -13,7 +13,7 @@
                </div>
             </div>
             <div class="row d-flex justify-content-center">
-               <div class="col-12 col-sm-10 col-md-8 col-lg-6">
+               <div v-if="currentDayExpenses.length > 0" class="col-12 col-sm-10 col-md-8 col-lg-6">
                   <div class="table-responsive">
                      <table class="table table-bordered table-hover table-expenses">
                         <thead>
@@ -43,6 +43,18 @@
                      </table>
                   </div>
                </div>
+               <div v-else class="col-12 col-sm-10 col-md-8 col-lg-6 no-expenses-info">
+                  <div class="row d-flex justify-content-center align-items-center flex-column">
+                     <div class="col-12 text-center m-3">
+                        <i class="far fa-smile-wink fa-4x"></i>
+                     </div>
+                     <div class="col-12 text-center m-3">
+                        <h2 class="admin-welcome-h2">
+                           У вказану дату витрати не здійснювались!
+                        </h2>
+                     </div>
+                  </div>
+               </div>
             </div>
          </div>
       </div>
@@ -56,11 +68,12 @@
             <hr>
             <div class="form-group">
                <label for="date">Дата</label>
-               <date-piker id="date" v-model="date" :options="options"></date-piker>
+               <date-piker id="date" v-model="date" :options="options" :error="errors.date ? errors.date : ''"></date-piker>
+               <!--<div v-if="errors.date" class="invalid-date">{{ errors.date }}</div>-->
             </div>
             <div class="form-group">
                <label for="category">Стаття</label>
-               <select @input="enableCostItemsSelect" v-model="cost_direction" class="form-control"
+               <select @input="enableCostItemsSelect" v-model="cost_direction" :class="{'is-invalid': errors.cost_direction_id}" class="form-control"
                        id="cost_direction">
                   <option selected disabled value="">Виберіть статтю витрат</option>
                   <option v-for="(direction, index) in expensesDirections"
@@ -69,10 +82,11 @@
                   >{{ direction.title }}
                   </option>
                </select>
+               <div v-if="errors.cost_direction_id" class="invalid-feedback">{{ errors.cost_direction_id }}</div>
             </div>
             <div class="form-group">
                <label for="category">Елемент</label>
-               <select ref="costItem" v-model="cost_item" class="form-control" id="cost_item" disabled>
+               <select ref="costItem" v-model="cost_item" :class="{'is-invalid': errors.cost_item_id}" class="form-control" id="cost_item" disabled>
                   <option selected disabled value="">Виберіть елемент витрат</option>
                   <option v-for="(item, index) in costItemsFiltered"
                           :key="index"
@@ -80,19 +94,25 @@
                   >{{ item.title }}
                   </option>
                </select>
+               <div v-if="errors.cost_item_id" class="invalid-feedback">{{ errors.cost_item_id }}</div>
             </div>
             <div class="form-group">
                <label for="sum">Сума, грн</label>
-               <input v-model="sum" type="text" class="form-control" id="sum">
-               <small><b>Увага!</b> Дробні числа необхідно вводити через крапку.</small>
+               <input v-model="sum" type="text" :class="{'is-invalid': errors.sum}" class="form-control" id="sum">
+               <div v-if="errors.sum" class="invalid-feedback">{{ errors.sum }}</div>
+               <small v-else><b>Увага!</b> Якщо сума з копійками, то копійки необхідно вводити через крапку.</small>
             </div>
             <hr class="button-separator">
             <div class="form-group d-flex justify-content-between mt-4">
-               <button @click="addExpense" class="col-4 btn btn-success">Додати</button>
+               <button ref="addExpenseButton" @click="addExpense" class="col-4 btn btn-success">Додати</button>
                <button @click="toggleModal" class="col-4 btn btn-danger">Відмінити</button>
             </div>
-         </div>
 
+            <!-- preloader -->
+            <div ref="preloader" class="preloader-container justify-content-center align-items-center">
+               <img src="../../images/preloader.gif">
+            </div>
+         </div>
 
       </div>
    </div>
@@ -111,10 +131,11 @@
                 sum: '',
                 options: {
                     locale: 'UK-ua',
-                    dateFormat: 'dd/mm/YYYY',
+                    dateFormat: 'dd-mm-YYYY',
                     useCurrentDate: true
                 },
-                costItemsFiltered: {}
+                costItemsFiltered: {},
+                errors: {},
             }
         },
         watch: {
@@ -169,7 +190,58 @@
         },
         methods: {
             addExpense() {
-                console.log(this.date + " | " + this.cost_direction + " | " + this.cost_item + " | " + this.sum)
+                this.errors = {};
+                this.$refs.addExpenseButton.setAttribute('disabled', true);
+                this.$refs.preloader.style.display = 'flex';
+
+                let expense = {
+                    sum: this.sum,
+                    cost_item_id: this.cost_item,
+                    cost_direction_id: this.cost_direction,
+                    date: this.date
+                }
+
+                axios.post('/add-expense', expense).then(
+                    response => {
+                        setTimeout(() => {
+                            this.$store.commit('addCurrentDayExpense', response.data.expense[0]);
+                            this.resetData();
+
+                            this.$refs.addExpenseButton.removeAttribute('disabled');
+                            this.$refs.preloader.style.display = 'none';
+                            this.$refs.costItem.setAttribute('disabled', true);
+                            this.toggleModal();
+                        }, 500);
+                    }
+                ).catch(
+                    error => {
+                        console.log(error);
+                        this.$refs.addExpenseButton.removeAttribute('disabled');
+                        this.$refs.preloader.style.display = 'none';
+
+                        console.log(error.response.data.errors);
+
+                        if (error.response.data.errors.sum) {
+                            this.$set(this.errors, 'sum', error.response.data.errors.sum[0]);
+                        }
+                        if (error.response.data.errors.cost_item_id) {
+                            this.$set(this.errors, 'cost_item_id', error.response.data.errors.cost_item_id[0]);
+                        }
+                        if (error.response.data.errors.cost_direction_id) {
+                            this.$set(this.errors, 'cost_direction_id', error.response.data.errors.cost_direction_id[0]);
+                        }
+                        if (error.response.data.errors.date) {
+                            this.$set(this.errors, 'date', error.response.data.errors.date[0]);
+                        }
+
+                    }
+                );
+            },
+            resetData() {
+                this.cost_direction = '';
+                this.cost_item = '';
+                this.sum = '';
+                this.errors = {}
             },
             enableCostItemsSelect() {
                 if (this.$refs.costItem.hasAttribute('disabled')) {
@@ -205,9 +277,31 @@
       background-color: rgba(0, 0, 0, 0.6)
    }
 
+   .invalid-feedback {
+      margin-top: 0;
+   }
+   .preloader-container {
+      display: none;
+      position: absolute;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(255, 255, 255, 0.6)
+   }
+
+   .no-expenses-info {
+      border: 2px dashed grey;
+      padding: 20px 10px;
+      color: #2c804e;
+   }
+
    .add-expense-form-container {
       background-color: white;
       padding: 25px 20px;
+      position: relative;
    }
 
    hr.button-separator {

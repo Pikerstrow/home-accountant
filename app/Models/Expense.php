@@ -7,7 +7,7 @@ use App\Models\CostItem;
 
 class Expense extends Model
 {
-    protected $fillable = ['cost_item_id', 'sum'];
+    protected $fillable = ['cost_item_id', 'cost_direction_id', 'sum', 'date'];
     public $timestamps = false;
 
     public function costItem()
